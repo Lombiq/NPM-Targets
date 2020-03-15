@@ -4,7 +4,7 @@
 
 ## Project Description
 
-Provides automatic NPM package installation and a custom NPM command execution before building a .NET project. This way it is possible for example to manage assets (e.g. .scss files or images) in a folder which will be automatically compiled into the _wwwroot_ folder on build which can be excluded from the version control system.
+Provides automatic NPM package installation and a custom NPM command execution before building a .NET project. This way it is possible for example to manage assets (e.g. .scss files or images) in a folder that will be automatically compiled into the _wwwroot_ folder on build, which then can be excluded from the version control system.
 
 Note, that these operations are optimized by running them only if the corresponding files have been changed (i.e. `npm install` will only be executed if the _package.json_ file has been changed).
 
@@ -28,7 +28,9 @@ If you want to utilize this then add a `dotnet-prebuild` script to the _package.
 },
 ```
 
-Bug reports, feature requests and comments are warmly welcome, **please do so via GitHub**.
-Feel free to send pull requests too, no matter which source repository you choose for this purpose.
 
-This project is developed by [Lombiq Technologies Ltd](http://lombiq.com/). Commercial-grade support is available through Lombiq.
+## Contributing
+
+Bug reports, feature requests, comments and code contributions are warmly welcome, **please do so via GitHub**.
+
+This project is developed by [Lombiq Technologies Ltd](https://lombiq.com/). Commercial-grade support is available through Lombiq.
