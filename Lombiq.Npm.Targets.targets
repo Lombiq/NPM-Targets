@@ -1,0 +1,25 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Target
+    Name="NpmInstall"
+    AfterTargets="AfterResolveReferences"
+    BeforeTargets="NpmDotnetPrebuild;BeforeBuild"
+    Inputs="package.json"
+    Outputs="$(NpmInstallStampFile)"
+    Condition="'$(ExecNpmInstallCommand)' == 'true' AND Exists('package.json')">
+    <Exec Command="$(NpmInstallCommand)" />
+    <Touch Files="$(NpmInstallStampFile)" AlwaysCreate="true" Condition="'$(CreateNpmInstallStampFile)' == 'true'" />
+  </Target>
+
+  <Target
+    Name="NpmDotnetPrebuild"
+    AfterTargets="InitCommonNodeModules;NpmInstall"
+    BeforeTargets="EmbeddModuleAssets;BeforeBuild"
+    Inputs="@(NpmDotnetPrebuildWatchedFiles)"
+    Outputs="$(NpmDotnetPrebuildStampFile)"
+    Condition="'$(ExecDotnetPrebuildCommand)' == 'true' AND Exists('package.json')">
+    <Exec Command="$(NpmDotnetPrebuildCommand)" />
+    <Touch Files="$(NpmDotnetPrebuildStampFile)" AlwaysCreate="true" Condition="'$(CreateDotnetPrebuildStampFile)' == 'true'"  />
+  </Target>
+
+</Project>
