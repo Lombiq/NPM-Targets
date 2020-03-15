@@ -8,6 +8,8 @@ Provides automatic NPM package installation and a custom NPM command execution b
 
 Note, that these operations are optimized by running them only if the corresponding files have been changed (i.e. `npm install` will only be executed if the _package.json_ file has been changed).
 
+Also see our [Gulp Extensions](https://github.com/Lombiq/Gulp-Extensions) library that contains some useful Gulp helpers.
+
 
 ## How to use
 
