@@ -8,6 +8,7 @@
     Outputs="$(NpmInstallStampFile)"
     Condition="'$(ExecNpmInstallCommand)' == 'true' AND Exists('package.json')">
     <Exec Command="$(NpmInstallCommand)" />
+    <MakeDir Directories="$(NodeModulesFolderPath)" Condition="!Exists($(NodeModulesFolderPath))"/>
     <Touch Files="$(NpmInstallStampFile)" AlwaysCreate="true" Condition="'$(CreateNpmInstallStampFile)' == 'true'" />
   </Target>
 
