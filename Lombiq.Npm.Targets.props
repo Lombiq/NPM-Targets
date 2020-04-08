@@ -19,7 +19,7 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <NpmDotnetPrebuildWatchedFiles Include="package.json;Assets/**/*.*"/>
+    <NpmDotnetPrebuildWatchedFiles Include="package.json;Assets/**/*.*;Scripts/**/*.*;Styles/**/*.*"/>
   </ItemGroup>
   
 </Project>
