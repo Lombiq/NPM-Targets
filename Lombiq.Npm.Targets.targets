@@ -13,6 +13,13 @@
   </Target>
 
   <Target
+    Name="DeleteDotnetPrebuildStampFile"
+    AfterTargets="Clean"
+    Condition="Exists($(NpmDotnetPrebuildStampFile))">
+    <Delete Files="$(NpmDotnetPrebuildStampFile)" />
+  </Target>
+
+  <Target
     Name="NpmDotnetPrebuild"
     AfterTargets="InitCommonNodeModules;NpmInstall"
     BeforeTargets="EmbeddModuleAssets;BeforeBuild"
