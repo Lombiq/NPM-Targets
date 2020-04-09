@@ -12,6 +12,11 @@
   </PropertyGroup>
 
   <PropertyGroup>
+    <ExecDotnetPostcleanCommand>true</ExecDotnetPostcleanCommand>
+    <NpmDotnetPostcleanCommand>npm run dotnet-postclean --if-present</NpmDotnetPostcleanCommand>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <ExecDotnetPrebuildCommand>true</ExecDotnetPrebuildCommand>
     <NpmDotnetPrebuildCommand>npm run dotnet-prebuild --if-present</NpmDotnetPrebuildCommand>
     <CreateDotnetPrebuildStampFile>true</CreateDotnetPrebuildStampFile>

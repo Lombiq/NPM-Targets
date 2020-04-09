@@ -20,6 +20,13 @@
   </Target>
 
   <Target
+    Name="NpmDotnetPostclean"
+    AfterTargets="Clean"
+    Condition="'$(ExecDotnetPostcleanCommand)' == 'true'">
+    <Exec Command="$(NpmDotnetPostcleanCommand)" />
+  </Target>
+
+  <Target
     Name="NpmDotnetPrebuild"
     AfterTargets="InitCommonNodeModules;NpmInstall"
     BeforeTargets="EmbeddModuleAssets;BeforeBuild"
