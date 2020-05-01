@@ -32,6 +32,14 @@ If you want to utilize this then add a `dotnet-prebuild` script to the _package.
 },
 ```
 
+Similarly, you can execute `npm run dotnet-postclean --if-present` via the `dotnet-postclean` script to clean up anything after an MSBuild `Clean`, for example:
+
+```
+"scripts": {
+  "dotnet-postclean": "gulp clean"
+}
+```
+
 
 ## Contribution and support
 
