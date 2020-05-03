@@ -41,7 +41,7 @@ Similarly, you can execute `npm run dotnet-postclean --if-present` via the `dotn
 ```
 
 
-## Contribution and support
+## Contributing and support
 
 Bug reports, feature requests, comments, questions, code contributions, and love letters are warmly welcome, please do so via GitHub issues and pull requests. Please adhere to our [open-source guidelines](https://lombiq.com/open-source-guidelines) while doing so.
 
