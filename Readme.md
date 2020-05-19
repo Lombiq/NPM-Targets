@@ -1,4 +1,4 @@
-# NPM MSBuild Targets
+# Lombiq NPM MSBuild Targets
 
 
 
