@@ -2,11 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netcoreapp3.1</TargetFrameworks>
+    <DefaultItemExcludes>$(DefaultItemExcludes);.git*;node_modules\**</DefaultItemExcludes>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove=".git" />
-    <None Remove=".gitignore" />
-  </ItemGroup>
 
 </Project>
