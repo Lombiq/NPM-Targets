@@ -34,14 +34,14 @@
     Outputs="$(NpmDotnetPrebuildStampFile)"
     Condition="'$(ExecDotnetPrebuildCommand)' == 'true' AND Exists('package.json')">
     <Exec Command="$(NpmDotnetPrebuildCommand)" ConsoleToMSBuild="true">
-      <Output TaskParameter="ConsoleOutput" PropertyName="OutputOfExec"/>
+      <Output TaskParameter="ConsoleOutput" PropertyName="PrebuildOutput"/>
     </Exec>
-    <Touch Files="$(NpmDotnetPrebuildStampFile)" AlwaysCreate="true" Condition="'$(CreateDotnetPrebuildStampFile)' == 'true'"  />
     <Error
-      Code="ESLINT001"
-      Text="ESLint Error, check output for more info!"
-      ContinueOnError="true"
-      Condition="$($(OutputOfExec).Contains('ESLintError'))"/>
+        Code="ESLINT001"
+        Text="asd"
+        ContinueOnError="true"
+        Condition="'a' == 'a'" />
+    <Touch Files="$(NpmDotnetPrebuildStampFile)" AlwaysCreate="true" Condition="'$(CreateDotnetPrebuildStampFile)' == 'true'"  />
   </Target>
 
   <!--Condition="$([System.IO.File]::ReadAllText($(NpmDotnetPrebuildStampFile)).Contains('ESLintError'))" />-->
