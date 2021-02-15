@@ -38,7 +38,7 @@
     </Exec>
     <Error
         Code="ESL01"
-        Text="Eslint error in gulp process, check output for more information!"
+        Text="ESLint error in Gulp process, check output for more information!"
         Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('$(PrebuildOutput)', 'error'))" />
     <Touch Files="$(NpmDotnetPrebuildStampFile)" AlwaysCreate="true" Condition="'$(CreateDotnetPrebuildStampFile)' == 'true'"  />
   </Target>
