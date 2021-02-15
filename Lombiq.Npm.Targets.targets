@@ -40,7 +40,8 @@
         Code="ESLINT001"
         Text="asd"
         ContinueOnError="true"
-        Condition="'a' == 'a'" />
+        Condition="'a'=='a'">
+    </Error>
     <Touch Files="$(NpmDotnetPrebuildStampFile)" AlwaysCreate="true" Condition="'$(CreateDotnetPrebuildStampFile)' == 'true'"  />
   </Target>
 
