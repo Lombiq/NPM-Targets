@@ -42,5 +42,5 @@
         Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('$(PrebuildOutput)', 'error'))" />
     <Touch Files="$(NpmDotnetPrebuildStampFile)" AlwaysCreate="true" Condition="'$(CreateDotnetPrebuildStampFile)' == 'true'"  />
   </Target>
-  
+
 </Project>
