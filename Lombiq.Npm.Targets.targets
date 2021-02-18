@@ -36,10 +36,6 @@
     <Exec Command="$(NpmDotnetPrebuildCommand)" ConsoleToMSBuild="true">
       <Output TaskParameter="ConsoleOutput" PropertyName="PrebuildOutput"/>
     </Exec>
-    <Warning
-        Code="ESL01"
-        Text="ESLint error in Gulp process, check the build output for more information."
-        Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('$(PrebuildOutput)', 'not ok'))" />
     <Touch Files="$(NpmDotnetPrebuildStampFile)" AlwaysCreate="true" Condition="'$(CreateDotnetPrebuildStampFile)' == 'true'"  />
   </Target>
 

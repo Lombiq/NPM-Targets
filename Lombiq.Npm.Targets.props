@@ -26,9 +26,5 @@
   <ItemGroup>
     <NpmDotnetPrebuildWatchedFiles Include="package.json;Assets/**/*.*;Scripts/**/*.*;Styles/**/*.*"/>
   </ItemGroup>
-
-  <PropertyGroup>
-    <PrebuildOutput>$(PrebuildOutput)</PrebuildOutput>
-  </PropertyGroup>
   
 </Project>
