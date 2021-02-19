@@ -3,7 +3,7 @@
   <PropertyGroup>
     <NodeModulesFolderPath>$(MSBuildProjectDirectory)\node_modules</NodeModulesFolderPath>
   </PropertyGroup>
-  
+
   <PropertyGroup>
     <ExecNpmInstallCommand>true</ExecNpmInstallCommand>
     <NpmInstallCommand>npm install</NpmInstallCommand>
@@ -22,9 +22,9 @@
     <CreateDotnetPrebuildStampFile>true</CreateDotnetPrebuildStampFile>
     <NpmDotnetPrebuildStampFile>$(NodeModulesFolderPath)\.dotnet-prebuild-stamp</NpmDotnetPrebuildStampFile>
   </PropertyGroup>
-  
+
   <ItemGroup>
     <NpmDotnetPrebuildWatchedFiles Include="package.json;Assets/**/*.*;Scripts/**/*.*;Styles/**/*.*"/>
   </ItemGroup>
-  
+
 </Project>
