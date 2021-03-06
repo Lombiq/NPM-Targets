@@ -33,7 +33,9 @@
     Inputs="@(NpmDotnetPrebuildWatchedFiles)"
     Outputs="$(NpmDotnetPrebuildStampFile)"
     Condition="'$(ExecDotnetPrebuildCommand)' == 'true' AND Exists('package.json')">
-    <Exec Command="$(NpmDotnetPrebuildCommand)" />
+    <Exec Command="$(NpmDotnetPrebuildCommand)" ConsoleToMSBuild="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="PrebuildOutput"/>
+    </Exec>
     <Touch Files="$(NpmDotnetPrebuildStampFile)" AlwaysCreate="true" Condition="'$(CreateDotnetPrebuildStampFile)' == 'true'"  />
   </Target>
 
