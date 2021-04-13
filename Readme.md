@@ -24,12 +24,15 @@ The `npm install` command will be executed but only if the _package.json_ file e
 
 An `npm run dotnet-prebuild --if-present` script will be also executed during the build process which can be utilized to run a Gulp task for example. This will only happen if the files defined in `NpmDotnetPrebuildWatchedFiles` have changed (to achieve [incremental build](https://docs.microsoft.com/en-us/visualstudio/msbuild/how-to-build-incrementally?view=vs-2019)).
 
-If you want to utilize this then add a `dotnet-prebuild` script to the _package.json_ file like this:
+If you want to utilize this then add a `dotnet-prebuild` script to the _package.json_ file like this (`gulp build` is just an example of a command you can run):
 
 ```
-"scripts": {
-  "dotnet-prebuild": "gulp build"
-},
+{
+  "private": true,
+  "scripts": {
+    "dotnet-prebuild": "gulp build"
+  }
+}
 ```
 
 Similarly, you can execute `npm run dotnet-postclean --if-present` via the `dotnet-postclean` script to clean up anything after an MSBuild `Clean`, for example:
