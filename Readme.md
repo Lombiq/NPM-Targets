@@ -20,7 +20,7 @@ Add the following lines to the csproj file where the _package.json_ file is. Mak
 <Import Project="path\to\Lombiq.Npm.Targets\Lombiq.Npm.Targets.targets" />
 ```
 
-The `npm ci` (as in, [clean install](https://docs.npmjs.com/cli/v7/commands/npm-ci)) command will be executed but only if the _package.json_ file exists and has been changed since the last build (i.e. you un/installed packages or up/downgraded ones). We aren't using `npm install` because `npm ci` always just exactly installs what's in _package_lock.json_ and thus is safer than `npm install` that can use different versions when executed in different times. Also, `npm ci` won't update _package_lock.json_ unexpectedly. Use `npm install` manually when installing a new package. While `npm ci` is slower with incremental builds this doesn't matter because it'll be run only the first time (when it's as fast as `npm install`) and when packages change.
+The `npm install` command will be executed but only if the _package.json_ file exists and has been changed since the last build (i.e. you un/installed packages or up/downgraded ones). Note that if you update NPM then the _package.json_ and _package-lock.json_ files can change on `npm install`; currently, [there's no way to prevent this](https://github.com/npm/cli/issues/564) (`npm ci` is much slower).
 
 An `npm run dotnet-prebuild --if-present` script will be also executed during the build process which can be utilized to run a Gulp task for example. This will only happen if the files defined in `NpmDotnetPrebuildWatchedFiles` have changed (to achieve [incremental build](https://docs.microsoft.com/en-us/visualstudio/msbuild/how-to-build-incrementally?view=vs-2019)).
 

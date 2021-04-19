@@ -6,7 +6,7 @@
 
   <PropertyGroup>
     <ExecNpmInstallCommand>true</ExecNpmInstallCommand>
-    <NpmInstallCommand>npm ci</NpmInstallCommand>
+    <NpmInstallCommand>npm install</NpmInstallCommand>
     <CreateNpmInstallStampFile>true</CreateNpmInstallStampFile>
     <NpmInstallStampFile>$(NodeModulesFolderPath)\.install-stamp</NpmInstallStampFile>
   </PropertyGroup>
