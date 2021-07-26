@@ -6,7 +6,8 @@
 
   <PropertyGroup>
     <ExecNpmInstallCommand>true</ExecNpmInstallCommand>
-    <NpmInstallCommand Condition="'$(NpmInstallCommand)' == ''">npm install</NpmInstallCommand>
+    <NpmInstallCommand>npm install</NpmInstallCommand>
+    <PnpmInstallCommand>pnpm install</PnpmInstallCommand>
     <CreateNpmInstallStampFile>true</CreateNpmInstallStampFile>
     <NpmInstallStampFile>$(NodeModulesFolderPath)\.install-stamp</NpmInstallStampFile>
   </PropertyGroup>
