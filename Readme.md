@@ -48,9 +48,7 @@ Similarly, you can execute `npm run dotnet-postclean --if-present` via the `dotn
 
 ## Using pnpm for package restore
 
-[pnpm](https://pnpm.io/) is a faster and more efficient package manager. If it's installed globally, then the module will use that instead of *npm* to restore packages.
-
-### Installation and usage
+[Pnpm](https://pnpm.io/) is a faster and more efficient package manager. If it's installed globally, then the module will use that instead of *npm* to restore packages.
 
 To install *pnpm* globally run this command: `npm install pnpm -g`. Once it's complete, the module will automatically use that to restore packages.
 
