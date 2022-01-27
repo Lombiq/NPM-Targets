@@ -2,6 +2,9 @@
 
 
 
+[![Lombiq.Npm.Targets NuGet](https://img.shields.io/nuget/v/Lombiq.Npm.Targets?label=Lombiq.Npm.Targets)](https://www.nuget.org/packages/Lombiq.Npm.Targets/)
+
+
 ## About
 
 Provides automatic NPM package installation and a custom NPM command execution before building a .NET project. This way it is possible for example to manage assets (e.g. .scss files or images) in a folder that will be automatically compiled into the _wwwroot_ folder on build, which then can be excluded from the version control system.

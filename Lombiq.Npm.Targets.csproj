@@ -6,6 +6,25 @@
     <IsPublishable>false</IsPublishable>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <Title></Title>
+    <Authors>Lombiq Technologies</Authors>
+    <Copyright>Copyright © 2020, Lombiq Technologies Ltd.</Copyright>
+    <Description>Provides automatic NPM package installation and a custom NPM command execution before building a .NET project. See the project website for detailed documentation.</Description>
+    <PackageIcon>NuGetIcon.png</PackageIcon>
+    <PackageTags>OrchardCore;Lombiq;AspNetCore;</PackageTags>
+    <RepositoryUrl>https://github.com/Lombiq/NPM-Targets</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/Lombiq/NPM-Targets</PackageProjectUrl>
+    <PackageLicenseFile>Licence.md</PackageLicenseFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Licence.md" Pack="true" PackagePath="" />
+    <None Include="Readme.md" />
+    <None Include="NuGetIcon.png" Pack="true" PackagePath="" />
+    <None Include="build\**" Pack="True" PackagePath="build\" />
+  </ItemGroup>
+
   <ItemGroup>
     <None Remove="node_modules\**" />
   </ItemGroup>
