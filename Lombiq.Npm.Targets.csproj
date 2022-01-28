@@ -12,7 +12,7 @@
     <Copyright>Copyright © 2020, Lombiq Technologies Ltd.</Copyright>
     <Description>Provides automatic NPM package installation and a custom NPM command execution before building a .NET project. See the project website for detailed documentation.</Description>
     <PackageIcon>NuGetIcon.png</PackageIcon>
-    <PackageTags>OrchardCore;Lombiq;AspNetCore;</PackageTags>
+    <PackageTags>Lombiq;NPM;Node.js;MSBuild</PackageTags>
     <RepositoryUrl>https://github.com/Lombiq/NPM-Targets</RepositoryUrl>
     <PackageProjectUrl>https://github.com/Lombiq/NPM-Targets</PackageProjectUrl>
     <PackageLicenseFile>Licence.md</PackageLicenseFile>
