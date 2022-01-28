@@ -18,7 +18,7 @@ Do you want to quickly try out this project and see it in action? Check it out i
 
 ## How to use
 
-Add the following lines to the csproj file where the _package.json_ file is. Make sure that the paths are pointing to the _Lombiq.Npm.Targets.props_ and _Lombiq.Npm.Targets.targets_ files in this project.
+Install the [NuGet package](https://www.nuget.org/packages/Lombiq.Npm.Targets/) or if you use the project from a submodule, add the following lines to the csproj file where the _package.json_ file is. Make sure that the paths are pointing to the _Lombiq.Npm.Targets.props_ and _Lombiq.Npm.Targets.targets_ files of this project.
 
 ```
 <Import Project="path\to\Lombiq.Npm.Targets\Lombiq.Npm.Targets.props" />
