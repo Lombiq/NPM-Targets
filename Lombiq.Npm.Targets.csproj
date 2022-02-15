@@ -6,6 +6,27 @@
     <IsPublishable>false</IsPublishable>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <Title>Lombiq NPM MSBuild Targets</Title>
+    <Authors>Lombiq Technologies</Authors>
+    <Copyright>Copyright © 2020, Lombiq Technologies Ltd.</Copyright>
+    <Description>Provides automatic NPM package installation and a custom NPM command execution before building a .NET project. See the project website for detailed documentation.</Description>
+    <PackageIcon>NuGetIcon.png</PackageIcon>
+    <PackageTags>Lombiq;NPM;Node.js;MSBuild</PackageTags>
+    <RepositoryUrl>https://github.com/Lombiq/NPM-Targets</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/Lombiq/NPM-Targets</PackageProjectUrl>
+    <PackageLicenseFile>Licence.md</PackageLicenseFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Licence.md" Pack="true" PackagePath="" />
+    <None Include="Readme.md" />
+    <None Include="NuGetIcon.png" Pack="true" PackagePath="" />
+    <None Include="build\**" Pack="true" PackagePath="build\" />
+    <None Include="*.props" Pack="true" PackagePath="" />
+    <None Include="*.targets" Pack="true" PackagePath="" />
+  </ItemGroup>
+
   <ItemGroup>
     <None Remove="node_modules\**" />
   </ItemGroup>
