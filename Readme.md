@@ -72,7 +72,7 @@ Next we install NVM and Node.js in userspace.
 2. Type `nvm`. 
     - If you get _nvm: command not found_ error, reload your shell profile first (`source ~/.bashrc`) and try again.
 3. Install the latest Node.js with `nvm install node`.
-    - If you are going to use Gulp, you need to use 14.x (see [here](https://github.com/Lombiq/Orchard-Vue.js#prerequisites)) and make it the default: `nvm install 14.7.0 && nvm alias default 14.7.0`.
+    - If you are going to use Gulp and you have problems with Node.js 16.x (see [here](https://github.com/Lombiq/Orchard-Vue.js#prerequisites)), try downgrading to 14.x and make it the default: `nvm install 14.7.0 && nvm alias default 14.7.0`.
 
 This is good enough for development, but for example MSBuild doesn't use a login shell. So you need to set up some proxy commands for `node` and `npm`.
 
