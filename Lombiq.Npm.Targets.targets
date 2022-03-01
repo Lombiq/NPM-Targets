@@ -40,7 +40,10 @@
     Inputs="@(NpmDotnetPrebuildWatchedFiles)"
     Outputs="$(NpmDotnetPrebuildStampFile)"
     Condition="'$(ExecDotnetPrebuildCommand)' == 'true' AND Exists('package.json')">
-    <Exec Command="$(NpmDotnetPrebuildCommand)" ConsoleToMSBuild="true">
+    <!-- Setting IgnoreStandardErrorWarningFormat="true" prevents MSBuild from setting the ExitCode to -1 when the
+      executed command actually returns 0, but logged warnings or errors during its execution. Refer to
+      https://docs.microsoft.com/en-us/visualstudio/msbuild/exec-task?view=vs-2022#remarks for more details. -->
+    <Exec Command="$(NpmDotnetPrebuildCommand)" ConsoleToMSBuild="true" IgnoreStandardErrorWarningFormat="true">
       <Output TaskParameter="ConsoleOutput" PropertyName="PrebuildOutput"/>
     </Exec>
     <Touch Files="$(NpmDotnetPrebuildStampFile)" AlwaysCreate="true" Condition="'$(CreateDotnetPrebuildStampFile)' == 'true'"  />
