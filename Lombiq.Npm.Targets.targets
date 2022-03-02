@@ -3,7 +3,7 @@
   <Target
     Name="NpmInstall"
     AfterTargets="AfterResolveReferences"
-    BeforeTargets="NpmDotnetPrebuild;BeforeBuild"
+    BeforeTargets="NpmDotnetPrebuild;Compile"
     Inputs="package.json"
     Outputs="$(NpmInstallStampFile)"
     Condition="'$(ExecNpmInstallCommand)' == 'true' AND Exists('package.json')">
@@ -36,7 +36,7 @@
   <Target
     Name="NpmDotnetPrebuild"
     AfterTargets="InitCommonNodeModules;NpmInstall"
-    BeforeTargets="EmbeddModuleAssets;BeforeBuild"
+    BeforeTargets="EmbeddModuleAssets;Compile"
     Inputs="@(NpmDotnetPrebuildWatchedFiles)"
     Outputs="$(NpmDotnetPrebuildStampFile)"
     Condition="'$(ExecDotnetPrebuildCommand)' == 'true' AND Exists('package.json')">
