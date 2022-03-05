@@ -56,7 +56,7 @@ Similarly, you can execute `npm run dotnet-postclean --if-present` via the `dotn
 To install *pnpm* globally run this command: `npm install pnpm -g`. Once it's complete, the module will automatically use that to restore packages.
 
 
-## Global vs Userpace NPM on Linux
+## Global NPM vs Userspace NPM via Node Version Manager on Linux
 
 If you installed NPM from your package manager, you will likely suffer an `EACCES` error when you try to install a package globally. The [recommended solution](https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally#reinstall-npm-with-a-node-version-manager) is to install NPM via the Node Version Manager (NVM). This is what you should do:
 
@@ -75,6 +75,8 @@ Next we install NVM and Node.js in userspace.
     - If you are going to use Gulp and you have problems with Node.js 16.x (see [here](https://github.com/Lombiq/Orchard-Vue.js#prerequisites)), try downgrading to 14.x and make it the default: `nvm install 14.7.0 && nvm alias default 14.7.0`.
 
 This is good enough for development, but for example MSBuild doesn't use a login shell. So you need to set up some proxy commands for `node` and `npm`.
+
+(If you wish to use pnpm, add it to after the to the first line after the `in` as well.)
 
 ```shell
 for command in node npm; do
