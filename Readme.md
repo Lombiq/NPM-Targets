@@ -67,6 +67,8 @@ mkdir -p "$XDG_CONFIG_HOME"
 mkdir -p "$HOME/.local/bin"
 ```
 
+Also if you have installed npm globally via your package manager, uninstall it to avoid future confusion.
+
 Next we install NVM and Node.js in userspace.
 1. Install NVM for your user: `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash`
 2. Type `nvm`. 
@@ -76,12 +78,11 @@ Next we install NVM and Node.js in userspace.
 
 This is good enough for development, but for example MSBuild doesn't use a login shell. So you need to set up some proxy commands for `node` and `npm`.
 
-(If you wish to use pnpm, add it to after the to the first line after the `in` as well.)
-
 ```shell
-for command in node npm; do
-
-cat > ~/.local/bin/$command << DONE
+function proxy-nvm-command() {
+    for command in "$@"; do
+    
+    cat > ~/.local/bin/$command << DONE
 #!/bin/bash
 
 export NVM_DIR="$HOME/.config/nvm"
@@ -92,6 +93,15 @@ DONE
 chmod +x ~/.local/bin/$command
 
 done
+}
+
+proxy-nvm-command node npm
+```
+
+If you wish to use pnpm too, type this:
+```shell
+npm install pnpm -g
+proxy-nvm-command pnpm
 ```
 
 
