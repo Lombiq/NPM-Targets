@@ -98,9 +98,9 @@ source "\$NVM_DIR/nvm.sh"
 exec $command "\$@"
 DONE
 
-chmod +x ~/.local/bin/$command
-
-done
+    chmod +x ~/.local/bin/$command
+    
+    done
 }
 
 proxy-nvm-command node npm
