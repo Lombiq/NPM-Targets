@@ -1,7 +1,13 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <PropertyGroup>
-    <NodeModulesFolderPath>$(MSBuildProjectDirectory)\node_modules</NodeModulesFolderPath>
+    <!-- Set "NpmTargetsWorkingDirectory" before importing this file to adjust all dependent properties at once. -->
+    <NpmTargetsWorkingDirectory
+      Condition="'$(NpmTargetsWorkingDirectory)' == ''">$(MSBuildProjectDirectory)</NpmTargetsWorkingDirectory>
+    <!-- Using Path.Combine() here to account for possible trailing (back)slash on "NpmTargetsWorkingDirectory". -->
+    <NodeModulesFolderPath>$( [System.IO.Path]::Combine( $(NpmTargetsWorkingDirectory), 'node_modules' ) )</NodeModulesFolderPath>
+    <PackageJson>$( [System.IO.Path]::Combine( $(NpmTargetsWorkingDirectory), 'package.json' ) )</PackageJson>
+    <NpmCommandsEnvironmentVariables Condition="'$(NpmCommandsEnvironmentVariables)' == ''"></NpmCommandsEnvironmentVariables>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -9,7 +15,7 @@
     <NpmInstallCommand>npm install</NpmInstallCommand>
     <PnpmInstallCommand>pnpm install</PnpmInstallCommand>
     <CreateNpmInstallStampFile>true</CreateNpmInstallStampFile>
-    <NpmInstallStampFile>$(NodeModulesFolderPath)\.install-stamp</NpmInstallStampFile>
+    <NpmInstallStampFile>$(NodeModulesFolderPath)/.install-stamp</NpmInstallStampFile>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -21,11 +27,13 @@
     <ExecDotnetPrebuildCommand>true</ExecDotnetPrebuildCommand>
     <NpmDotnetPrebuildCommand>npm run dotnet-prebuild --if-present</NpmDotnetPrebuildCommand>
     <CreateDotnetPrebuildStampFile>true</CreateDotnetPrebuildStampFile>
-    <NpmDotnetPrebuildStampFile>$(NodeModulesFolderPath)\.dotnet-prebuild-stamp</NpmDotnetPrebuildStampFile>
+    <NpmDotnetPrebuildStampFile>$(NodeModulesFolderPath)/.dotnet-prebuild-stamp</NpmDotnetPrebuildStampFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <NpmDotnetPrebuildWatchedFiles Include="package.json;Assets/**/*.*;Scripts/**/*.*;Styles/**/*.*"/>
+    <!-- TODO: Prepend with WD path using CombinePaths task -->
+    <NpmDotnetPrebuildWatchedFiles Include="package.json;Assets/**/*.*;Scripts/**/*.*;Styles/**/*.*" />
+    <NpmCommandsEnvironmentVariables Include="$(NpmCommandsEnvironmentVariables)" />
   </ItemGroup>
 
 </Project>
