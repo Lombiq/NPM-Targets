@@ -4,9 +4,11 @@
     <!-- Set "NpmTargetsWorkingDirectory" before importing this file to adjust all dependent properties at once. -->
     <NpmTargetsWorkingDirectory
       Condition="'$(NpmTargetsWorkingDirectory)' == ''">$(MSBuildProjectDirectory)</NpmTargetsWorkingDirectory>
-    <!-- Using Path.Combine() here to account for possible trailing (back)slash on "NpmTargetsWorkingDirectory". -->
-    <NodeModulesFolderPath>$([System.IO.Path]::Combine($(NpmTargetsWorkingDirectory), 'node_modules'))</NodeModulesFolderPath>
-    <PackageJson>$([System.IO.Path]::Combine($(NpmTargetsWorkingDirectory), 'package.json'))</PackageJson>
+    <!-- Remove a possible trailing (back)slash on "NpmTargetsWorkingDirectory". -->
+    <NpmTargetsWorkingDirectory
+      Condition="'$(NpmTargetsWorkingDirectory)' != ''">$(NpmTargetsWorkingDirectory.TrimEnd('/\'))</NpmTargetsWorkingDirectory>
+    <NodeModulesFolderPath>$(NpmTargetsWorkingDirectory)/node_modules</NodeModulesFolderPath>
+    <PackageJson>$(NpmTargetsWorkingDirectory)/package.json</PackageJson>
     <NpmCommandsEnvironmentVariables Condition="'$(NpmCommandsEnvironmentVariables)' == ''"></NpmCommandsEnvironmentVariables>
   </PropertyGroup>
 
@@ -31,7 +33,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- TODO: Prepend with WD path using CombinePaths task -->
     <NpmDotnetPrebuildWatchedFiles Include="package.json;Assets/**/*.*;Scripts/**/*.*;Styles/**/*.*" />
     <NpmCommandsEnvironmentVariables Include="$(NpmCommandsEnvironmentVariables)" />
   </ItemGroup>
