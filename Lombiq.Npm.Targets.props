@@ -33,7 +33,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <NpmDotnetPrebuildWatchedFiles Include="package.json;Assets/**/*.*;Scripts/**/*.*;Styles/**/*.*" />
+    <NpmDotnetPrebuildWatchedFiles Include="$(NpmTargetsWorkingDirectory)/package.json" />
+    <NpmDotnetPrebuildWatchedFiles Include="$(NpmTargetsWorkingDirectory)/Assets/**/*.*" />
+    <NpmDotnetPrebuildWatchedFiles Include="$(NpmTargetsWorkingDirectory)/Scripts/**/*.*" />
+    <NpmDotnetPrebuildWatchedFiles Include="$(NpmTargetsWorkingDirectory)/Styles/**/*.*" />
     <NpmCommandsEnvironmentVariables Include="$(NpmCommandsEnvironmentVariables)" />
   </ItemGroup>
 
