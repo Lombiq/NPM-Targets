@@ -5,8 +5,8 @@
     <NpmTargetsWorkingDirectory
       Condition="'$(NpmTargetsWorkingDirectory)' == ''">$(MSBuildProjectDirectory)</NpmTargetsWorkingDirectory>
     <!-- Using Path.Combine() here to account for possible trailing (back)slash on "NpmTargetsWorkingDirectory". -->
-    <NodeModulesFolderPath>$( [System.IO.Path]::Combine( $(NpmTargetsWorkingDirectory), 'node_modules' ) )</NodeModulesFolderPath>
-    <PackageJson>$( [System.IO.Path]::Combine( $(NpmTargetsWorkingDirectory), 'package.json' ) )</PackageJson>
+    <NodeModulesFolderPath>$([System.IO.Path]::Combine($(NpmTargetsWorkingDirectory), 'node_modules'))</NodeModulesFolderPath>
+    <PackageJson>$([System.IO.Path]::Combine($(NpmTargetsWorkingDirectory), 'package.json'))</PackageJson>
     <NpmCommandsEnvironmentVariables Condition="'$(NpmCommandsEnvironmentVariables)' == ''"></NpmCommandsEnvironmentVariables>
   </PropertyGroup>
 
