@@ -7,14 +7,22 @@
     Inputs="$(PackageJson)"
     Outputs="$(NpmInstallStampFile)"
     Condition="'$(ExecNpmInstallCommand)' == 'true' AND Exists($(PackageJson))">
+    <!-- Enable pnpm via corepack. -->
+    <Exec Command="corepack enable" ContinueOnError="true" />
     <!-- Check if pnpm is installed. -->
     <Exec Command="pnpm -v" ContinueOnError="true">
       <Output TaskParameter="ExitCode" PropertyName="PnpmInstalledExitCode"/>
     </Exec>
     <!-- Use pnpm if installed. -->
-    <Exec Command="$(PnpmInstallCommand)" Condition="'$(PnpmInstalledExitCode)' == '0'" />
+    <Exec Command="$(PnpmInstallCommand)"
+          Condition="'$(PnpmInstalledExitCode)' == '0'"
+          WorkingDirectory="$(NpmTargetsWorkingDirectory)"
+          EnvironmentVariables="@(NpmCommandsEnvironmentVariables)" />
     <!-- Otherwise use regular npm. -->
-    <Exec Command="$(NpmInstallCommand)" Condition="'$(PnpmInstalledExitCode)' != '0'" />
+    <Exec Command="$(NpmInstallCommand)"
+          Condition="'$(PnpmInstalledExitCode)' != '0'"
+          WorkingDirectory="$(NpmTargetsWorkingDirectory)"
+          EnvironmentVariables="@(NpmCommandsEnvironmentVariables)" />
     <MakeDir Directories="$(NodeModulesFolderPath)" Condition="!Exists($(NodeModulesFolderPath))"/>
     <Touch Files="$(NpmInstallStampFile)" AlwaysCreate="true" Condition="'$(CreateNpmInstallStampFile)' == 'true'" />
   </Target>
