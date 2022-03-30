@@ -8,10 +8,10 @@
     Outputs="$(NpmInstallStampFile)"
     Condition="'$(ExecNpmInstallCommand)' == 'true' AND Exists($(PackageJson))">
     <!-- Enable pnpm via corepack. -->
-    <Exec Command="corepack enable" ContinueOnError="true" IgnoreStandardErrorWarningFormat="true" />
+    <Exec Command="corepack enable" IgnoreExitCode="true" />
     <!-- Check if pnpm is installed. -->
     <Exec Command="pnpm -v" ContinueOnError="true">
-      <Output TaskParameter="ExitCode" PropertyName="PnpmInstalledExitCode"/>
+      <Output TaskParameter="ExitCode" PropertyName="PnpmInstalledExitCode" />
     </Exec>
     <!-- Use pnpm if installed. -->
     <Exec Command="$(PnpmInstallCommand)"
@@ -23,7 +23,7 @@
           Condition="'$(PnpmInstalledExitCode)' != '0'"
           WorkingDirectory="$(NpmTargetsWorkingDirectory)"
           EnvironmentVariables="@(NpmCommandsEnvironmentVariables)" />
-    <MakeDir Directories="$(NodeModulesFolderPath)" Condition="!Exists($(NodeModulesFolderPath))"/>
+    <MakeDir Directories="$(NodeModulesFolderPath)" Condition="!Exists($(NodeModulesFolderPath))" />
     <Touch Files="$(NpmInstallStampFile)" AlwaysCreate="true" Condition="'$(CreateNpmInstallStampFile)' == 'true'" />
   </Target>
 
@@ -58,7 +58,7 @@
           IgnoreStandardErrorWarningFormat="true"
           WorkingDirectory="$(NpmTargetsWorkingDirectory)"
           EnvironmentVariables="@(NpmCommandsEnvironmentVariables)">
-      <Output TaskParameter="ConsoleOutput" PropertyName="PrebuildOutput"/>
+      <Output TaskParameter="ConsoleOutput" PropertyName="PrebuildOutput" />
     </Exec>
     <Touch Files="$(NpmDotnetPrebuildStampFile)" AlwaysCreate="true" Condition="'$(CreateDotnetPrebuildStampFile)' == 'true'"  />
   </Target>
