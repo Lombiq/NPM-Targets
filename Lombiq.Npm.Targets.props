@@ -9,6 +9,7 @@
       Condition="'$(NpmTargetsWorkingDirectory)' != ''">$(NpmTargetsWorkingDirectory.TrimEnd('/\'))</NpmTargetsWorkingDirectory>
     <NodeModulesFolderPath>$(NpmTargetsWorkingDirectory)/node_modules</NodeModulesFolderPath>
     <PackageJson>$(NpmTargetsWorkingDirectory)/package.json</PackageJson>
+    <!-- The following environment variables will be passed to all (p)npm invocations. -->
     <NpmCommandsEnvironmentVariables Condition="'$(NpmCommandsEnvironmentVariables)' == ''"></NpmCommandsEnvironmentVariables>
   </PropertyGroup>
 
