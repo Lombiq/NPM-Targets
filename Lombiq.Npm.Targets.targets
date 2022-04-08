@@ -60,7 +60,9 @@
           EnvironmentVariables="@(NpmCommandsEnvironmentVariables)">
       <Output TaskParameter="ConsoleOutput" PropertyName="PrebuildOutput" />
     </Exec>
-    <Touch Files="$(NpmDotnetPrebuildStampFile)" AlwaysCreate="true" Condition="'$(CreateDotnetPrebuildStampFile)' == 'true'"  />
+    <Touch Files="$(NpmDotnetPrebuildStampFile)"
+           Condition="'$(CreateDotnetPrebuildStampFile)' == 'true'"
+           AlwaysCreate="true" />
   </Target>
 
 </Project>
