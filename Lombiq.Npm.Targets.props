@@ -1,8 +1,9 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <PropertyGroup>
-    <NodeModulesFolderPath>node_modules</NodeModulesFolderPath>
-    <PackageJson>package.json</PackageJson>
+    <NpmTargetsWorkingDirectory>$(MSBuildProjectDirectory)</NpmTargetsWorkingDirectory>
+    <NodeModulesFolderPath>$(NpmTargetsWorkingDirectory)/node_modules</NodeModulesFolderPath>
+    <PackageJson>$(NpmTargetsWorkingDirectory)/package.json</PackageJson>
     <!-- The following environment variables will be passed to all (p)npm invocations. -->
     <NpmCommandsEnvironmentVariables Condition="'$(NpmCommandsEnvironmentVariables)' == ''"></NpmCommandsEnvironmentVariables>
   </PropertyGroup>
@@ -28,10 +29,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <NpmDotnetPrebuildWatchedFiles Include="package.json" />
-    <NpmDotnetPrebuildWatchedFiles Include="Assets/**/*.*" />
-    <NpmDotnetPrebuildWatchedFiles Include="Scripts/**/*.*" />
-    <NpmDotnetPrebuildWatchedFiles Include="Styles/**/*.*" />
+    <NpmDotnetPrebuildWatchedFiles Include="$(NpmTargetsWorkingDirectory)/package.json" />
+    <NpmDotnetPrebuildWatchedFiles Include="$(NpmTargetsWorkingDirectory)/Assets/**/*.*" />
+    <NpmDotnetPrebuildWatchedFiles Include="$(NpmTargetsWorkingDirectory)/Scripts/**/*.*" />
+    <NpmDotnetPrebuildWatchedFiles Include="$(NpmTargetsWorkingDirectory)/Styles/**/*.*" />
     <NpmCommandsEnvironmentVariables Include="$(NpmCommandsEnvironmentVariables)" />
   </ItemGroup>
 
