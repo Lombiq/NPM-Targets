@@ -7,8 +7,6 @@
     Inputs="$(PackageJson)"
     Outputs="$(NpmInstallStampFile)"
     Condition="'$(ExecNpmInstallCommand)' == 'true' AND Exists($(PackageJson))">
-    <!-- Enable pnpm via corepack. -->
-    <Exec Command="corepack enable" IgnoreExitCode="true" />
     <!-- Check if pnpm is installed. -->
     <Exec Command="pnpm -v" ContinueOnError="true">
       <Output TaskParameter="ExitCode" PropertyName="PnpmInstalledExitCode" />
