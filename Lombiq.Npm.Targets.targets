@@ -43,8 +43,7 @@
 
   <Target
     Name="NpmDotnetPrebuild"
-    DependsOnTargets="NpmInstall"
-    AfterTargets="AfterResolveReferences;InitCommonNodeModules"
+    AfterTargets="AfterResolveReferences;NpmInstall;InitCommonNodeModules"
     BeforeTargets="EmbeddModuleAssets;Compile"
     Inputs="@(NpmDotnetPrebuildWatchedFiles)"
     Outputs="$(NpmDotnetPrebuildStampFile)"
