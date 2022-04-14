@@ -4,8 +4,9 @@
     <NpmTargetsWorkingDirectory>$(MSBuildProjectDirectory)</NpmTargetsWorkingDirectory>
     <NodeModulesFolderPath>$(NpmTargetsWorkingDirectory)/node_modules</NodeModulesFolderPath>
     <PackageJson>$(NpmTargetsWorkingDirectory)/package.json</PackageJson>
-    <!-- The following environment variables will be passed to all (p)npm invocations. -->
-    <NpmCommandsEnvironmentVariables Condition="'$(NpmCommandsEnvironmentVariables)' == ''"></NpmCommandsEnvironmentVariables>
+    <!-- The environment variables defined by this property will be passed to all (p)npm invocations. Useful for
+         consuming projects that want to pass additional settings to the envoked scripts. -->
+    <NpmCommandsEnvironmentVariables></NpmCommandsEnvironmentVariables>
   </PropertyGroup>
 
   <PropertyGroup>
