@@ -2,6 +2,8 @@
 
   <Target
     Name="NpmInstall"
+    AfterTargets="BeforeNpmInstall"
+    BeforeTargets="AfterNpmInstall"
     Inputs="$(PackageJson)"
     Outputs="$(NpmInstallStampFile)"
     Condition="'$(ExecNpmInstallCommand)' == 'true' AND Exists($(PackageJson))">
