@@ -5,7 +5,7 @@
     <NodeModulesFolderPath>$(NpmTargetsWorkingDirectory)/node_modules</NodeModulesFolderPath>
     <PackageJson>$(NpmTargetsWorkingDirectory)/package.json</PackageJson>
     <!-- The environment variables defined by this property will be passed to all (p)npm invocations. Useful for
-         consuming projects that want to pass additional settings to the envoked scripts. -->
+         consuming projects that want to pass additional settings to the invoked scripts. -->
     <NpmCommandsEnvironmentVariables></NpmCommandsEnvironmentVariables>
   </PropertyGroup>
 
