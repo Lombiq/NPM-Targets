@@ -1,7 +1,12 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <PropertyGroup>
-    <NodeModulesFolderPath>$(MSBuildProjectDirectory)\node_modules</NodeModulesFolderPath>
+    <NpmTargetsWorkingDirectory>$(MSBuildProjectDirectory)</NpmTargetsWorkingDirectory>
+    <NodeModulesFolderPath>$(NpmTargetsWorkingDirectory)/node_modules</NodeModulesFolderPath>
+    <PackageJson>$(NpmTargetsWorkingDirectory)/package.json</PackageJson>
+    <!-- The environment variables defined by this property will be passed to all (p)npm invocations. Useful for
+         consuming projects that want to pass additional settings to the invoked scripts. -->
+    <NpmCommandsEnvironmentVariables></NpmCommandsEnvironmentVariables>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -9,7 +14,7 @@
     <NpmInstallCommand>npm install</NpmInstallCommand>
     <PnpmInstallCommand>pnpm install</PnpmInstallCommand>
     <CreateNpmInstallStampFile>true</CreateNpmInstallStampFile>
-    <NpmInstallStampFile>$(NodeModulesFolderPath)\.install-stamp</NpmInstallStampFile>
+    <NpmInstallStampFile>$(NodeModulesFolderPath)/.install-stamp</NpmInstallStampFile>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -21,11 +26,15 @@
     <ExecDotnetPrebuildCommand>true</ExecDotnetPrebuildCommand>
     <NpmDotnetPrebuildCommand>npm run dotnet-prebuild --if-present</NpmDotnetPrebuildCommand>
     <CreateDotnetPrebuildStampFile>true</CreateDotnetPrebuildStampFile>
-    <NpmDotnetPrebuildStampFile>$(NodeModulesFolderPath)\.dotnet-prebuild-stamp</NpmDotnetPrebuildStampFile>
+    <NpmDotnetPrebuildStampFile>$(NodeModulesFolderPath)/.dotnet-prebuild-stamp</NpmDotnetPrebuildStampFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <NpmDotnetPrebuildWatchedFiles Include="package.json;Assets/**/*.*;Scripts/**/*.*;Styles/**/*.*"/>
+    <NpmDotnetPrebuildWatchedFiles Include="$(NpmTargetsWorkingDirectory)/package.json" />
+    <NpmDotnetPrebuildWatchedFiles Include="$(NpmTargetsWorkingDirectory)/Assets/**/*.*" />
+    <NpmDotnetPrebuildWatchedFiles Include="$(NpmTargetsWorkingDirectory)/Scripts/**/*.*" />
+    <NpmDotnetPrebuildWatchedFiles Include="$(NpmTargetsWorkingDirectory)/Styles/**/*.*" />
+    <NpmCommandsEnvironmentVariables Include="$(NpmCommandsEnvironmentVariables)" />
   </ItemGroup>
 
 </Project>
