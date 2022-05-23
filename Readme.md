@@ -84,7 +84,7 @@ If you have a desktop environment (through a display manager) see if the followi
 4. Save everything, log out and log back it.
 If everything went well you can now successfully build your Lombiq.Npm.Targets-using project as your IDE will already be in an NVM enabled environment when you start it up. 
 
-You need to set up some proxy commands for `node` and `npm`.
+You need to set up some proxy commands for `node` and `npm`:
 
 ```shell
 function proxy-nvm-command() {
@@ -107,6 +107,7 @@ proxy-nvm-command node npm
 ```
 
 If you wish to use PNPM too, type this:
+
 ```shell
 npm install pnpm -g
 proxy-nvm-command pnpm
