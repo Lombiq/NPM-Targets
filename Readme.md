@@ -82,7 +82,7 @@ If you have a desktop environment (through a display manager) see if the followi
 2. Open or create the _~/.xsessionrc_ file in a text editor. This is the autorun file for your dektop login session.
 3. Copy the new lines at the bottom of _~/.bashrc_ created by the NVM installer and append them to the end of the _~/.xsessionrc_.
 4. Save everything, log out and log back it.
-If everything went well you can now successfully build your _Lombiq.Npm.Targets_-using project as your IDE will already be in an NVM enabled environment when you start it up. 
+If everything went well you can now successfully build your `Lombiq.Npm.Targets`-using project as your IDE will already be in an NVM enabled environment when you start it up. 
 
 You need to set up some proxy commands for `node` and `npm`:
 
