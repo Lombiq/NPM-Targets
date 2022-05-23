@@ -10,7 +10,7 @@
     <Title>Lombiq NPM MSBuild Targets</Title>
     <Authors>Lombiq Technologies</Authors>
     <Copyright>Copyright © 2020, Lombiq Technologies Ltd.</Copyright>
-    <Description>Provides automatic NPM package installation and a custom NPM command execution before building a .NET project. See the project website for detailed documentation.</Description>
+    <Description>Lombiq NPM MSBuild Targets: Provides automatic NPM package installation and a custom NPM command execution before building a .NET project. See the project website for detailed documentation.</Description>
     <PackageIcon>NuGetIcon.png</PackageIcon>
     <PackageTags>Lombiq;NPM;Node.js;MSBuild</PackageTags>
     <RepositoryUrl>https://github.com/Lombiq/NPM-Targets</RepositoryUrl>
