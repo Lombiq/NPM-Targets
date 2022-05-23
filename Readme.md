@@ -49,11 +49,11 @@ Similarly, you can execute `npm run dotnet-postclean --if-present` via the `dotn
 ```
 
 
-## Using pnpm for package restore
+## Using PNPM for package restore
 
-[Pnpm](https://pnpm.io/) is a faster and more efficient package manager. If it's installed globally, then the module will use that instead of *npm* to restore packages.
+[PNPM](https://pnpm.io/) is a faster and more efficient package manager. If it's installed globally, then the module will use `pnpm` instead of `npm` to restore packages.
 
-To install *pnpm* globally run this command: `npm install pnpm -g`. Once it's complete, the module will automatically use that to restore packages.
+To install `pnpm` globally run this command: `npm install pnpm -g`. Once it's complete, the module will automatically use that to restore packages.
 
 
 ## Global NPM vs Userspace NPM via Node Version Manager on Linux
@@ -67,7 +67,7 @@ mkdir -p "$XDG_CONFIG_HOME"
 mkdir -p "$HOME/.local/bin"
 ```
 
-Also if you have installed npm globally via your package manager, uninstall it to avoid future confusion.
+Also if you have installed NPM globally via your package manager, uninstall it to avoid future confusion.
 
 Next we install NVM and Node.js in userspace.
 1. Install NVM for your user: `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash`
@@ -106,7 +106,7 @@ DONE
 proxy-nvm-command node npm
 ```
 
-If you wish to use pnpm too, type this:
+If you wish to use PNPM too, type this:
 ```shell
 npm install pnpm -g
 proxy-nvm-command pnpm
