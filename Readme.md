@@ -53,7 +53,15 @@ Similarly, you can execute `npm run dotnet-postclean --if-present` via the `dotn
 
 [PNPM](https://pnpm.io/) is a faster and more efficient package manager. If it's installed globally, then the module will use `pnpm` instead of `npm` to restore packages.
 
-To install `pnpm` globally run this command: `npm install pnpm -g`. Once it's complete, the module will automatically use that to restore packages.
+### Installation and usage
+
+To instaall PNPM globally, run this command: `npm install pnpm -g`. Once it's complete, the module will automatically use that to restore packages.
+
+### Notes
+
+* PNPM supports restoring packages directly to a directory so it's not necessary to move *node_modules* to a parent directory anymore.
+* It uses its own package lock file. So if you want to keep NPM compatibility, then you have to maintain both *pnpm-lock.yaml* and *package-lock.json* files if you want to support both.
+* It installs the latest package dependencies unless it's overriden from the *package.json* file. For example the latest *sass* is installed along with  *gulp-dart-sass* that might [cause issues with Bootstrap 4](https://github.com/twbs/bootstrap/issues/34051). In this case it must be overriden with a lower version.
 
 
 ## Global NPM vs Userspace NPM via Node Version Manager on Linux
