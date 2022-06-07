@@ -1,9 +1,10 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <PropertyGroup>
+    <!-- The directory in which npm commands will be executed. Can be modified by consuming projects. -->
     <NpmTargetsWorkingDirectory>$(MSBuildProjectDirectory)</NpmTargetsWorkingDirectory>
-    <NodeModulesFolderPath>$(NpmTargetsWorkingDirectory)/node_modules</NodeModulesFolderPath>
-    <PackageJson>$(NpmTargetsWorkingDirectory)/package.json</PackageJson>
+    <NodeModulesFolderPath>$(MSBuildProjectDirectory)/node_modules</NodeModulesFolderPath>
+    <PackageJson>$(MSBuildProjectDirectory)/package.json</PackageJson>
     <!-- The environment variables defined by this property will be passed to all (p)npm invocations. Useful for
          consuming projects that want to pass additional settings to the invoked scripts. -->
     <NpmCommandsEnvironmentVariables></NpmCommandsEnvironmentVariables>
@@ -30,10 +31,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <NpmDotnetPrebuildWatchedFiles Include="$(NpmTargetsWorkingDirectory)/package.json" />
-    <NpmDotnetPrebuildWatchedFiles Include="$(NpmTargetsWorkingDirectory)/Assets/**/*.*" />
-    <NpmDotnetPrebuildWatchedFiles Include="$(NpmTargetsWorkingDirectory)/Scripts/**/*.*" />
-    <NpmDotnetPrebuildWatchedFiles Include="$(NpmTargetsWorkingDirectory)/Styles/**/*.*" />
+    <NpmDotnetPrebuildWatchedFiles Include="$(MSBuildProjectDirectory)/package.json" />
+    <NpmDotnetPrebuildWatchedFiles Include="$(MSBuildProjectDirectory)/Assets/**/*.*" />
+    <NpmDotnetPrebuildWatchedFiles Include="$(MSBuildProjectDirectory)/Scripts/**/*.*" />
+    <NpmDotnetPrebuildWatchedFiles Include="$(MSBuildProjectDirectory)/Styles/**/*.*" />
     <NpmCommandsEnvironmentVariables Include="$(NpmCommandsEnvironmentVariables)" />
   </ItemGroup>
 
