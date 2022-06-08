@@ -50,7 +50,7 @@ Similarly, you can execute `npm run dotnet-postclean --if-present` via the `dotn
 
 ```
 "scripts": {
-  "dotnet-postclean": "gulp clean" 
+  "dotnet-postclean": "gulp clean"
 }
 ```
 
