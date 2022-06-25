@@ -5,8 +5,6 @@
     Inputs="$(PackageJson)"
     Outputs="$(NpmInstallStampFile)"
     Condition="'$(ExecNpmInstallCommand)' == 'true' AND Exists($(PackageJson))">
-    <!-- Enable the latest version of pnpm@6. -->
-    <Exec Command="corepack prepare pnpm@6.32.24 --activate" />
     <!-- Check if pnpm is installed. -->
     <Exec Command="pnpm -v" ContinueOnError="true">
       <Output TaskParameter="ExitCode" PropertyName="PnpmInstalledExitCode" />
