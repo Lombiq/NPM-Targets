@@ -7,14 +7,17 @@
     Inputs="package.json"
     Outputs="$(NpmInstallStampFile)"
     Condition="'$(ExecNpmInstallCommand)' == 'true' AND Exists('package.json')">
+
     <!-- Check if pnpm is installed. -->
-    <Exec Command="pnpm -v" ContinueOnError="true">
+    <Exec Command="pnpm -v" IgnoreExitCode="true">
       <Output TaskParameter="ExitCode" PropertyName="PnpmInstalledExitCode"/>
     </Exec>
+
     <!-- Use pnpm if installed. -->
     <Exec Command="$(PnpmInstallCommand)" Condition="'$(PnpmInstalledExitCode)' == '0'" />
     <!-- Otherwise use regular npm. -->
     <Exec Command="$(NpmInstallCommand)" Condition="'$(PnpmInstalledExitCode)' != '0'" />
+
     <MakeDir Directories="$(NodeModulesFolderPath)" Condition="!Exists($(NodeModulesFolderPath))"/>
     <Touch Files="$(NpmInstallStampFile)" AlwaysCreate="true" Condition="'$(CreateNpmInstallStampFile)' == 'true'" />
   </Target>
