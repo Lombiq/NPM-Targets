@@ -16,7 +16,7 @@ Do you want to quickly try out this project and see it in action? Check it out i
 
 Install the [NuGet package](https://www.nuget.org/packages/Lombiq.Npm.Targets/) or if you use the project from a submodule, add the following lines to the csproj file where the _package.json_ file is. Make sure that the paths are pointing to the _Lombiq.Npm.Targets.props_ and _Lombiq.Npm.Targets.targets_ files of this project.
 
-```
+```xml
 <Import Project="path\to\Lombiq.Npm.Targets\Lombiq.Npm.Targets.props" />
 <Import Project="path\to\Lombiq.Npm.Targets\Lombiq.Npm.Targets.targets" />
 ```
@@ -33,7 +33,7 @@ An `npm run dotnet-prebuild --if-present` script will be also executed during th
 
 If you want to utilize this then add a `dotnet-prebuild` script to the _package.json_ file like this (`gulp build` is just an example of a command you can run; you can also run the default gulp command with just `gulp`):
 
-```
+```json
 {
   "private": true,
   "scripts": {
@@ -44,9 +44,11 @@ If you want to utilize this then add a `dotnet-prebuild` script to the _package.
 
 Similarly, you can execute `npm run dotnet-postclean --if-present` via the `dotnet-postclean` script to clean up anything after an MSBuild `Clean`, for example:
 
-```
-"scripts": {
-  "dotnet-postclean": "gulp clean"
+```json
+{
+  "scripts": {
+    "dotnet-postclean": "gulp clean"
+  }
 }
 ```
 
