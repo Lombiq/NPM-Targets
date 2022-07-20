@@ -64,7 +64,7 @@ To instaall PNPM globally, run this command: `npm install pnpm -g`. Once it's co
 
 * PNPM supports restoring packages directly to a directory so it's not necessary to move _node_modules_ to a parent directory anymore.
 * It uses its own package lock file. So if you want to keep NPM compatibility, then you have to maintain both _pnpm-lock.yaml_ and _package-lock.json_ files if you want to support both.
-* It installs the latest package dependencies unless it's overriden from the _package.json_ file. For example the latest _sass_ is installed along with  _gulp-dart-sass_ that might [cause issues with Bootstrap 4](https://github.com/twbs/bootstrap/issues/34051). In this case it must be overriden with a lower version.
+* It installs the latest package dependencies unless it's overriden from the _package.json_ file. For example the latest _sass_ is installed along with _gulp-dart-sass_ that might [cause issues with Bootstrap 4](https://github.com/twbs/bootstrap/issues/34051). In this case it must be overriden with a lower version.
 
 ## Global NPM vs Userspace NPM via Node Version Manager on Linux
 
@@ -88,8 +88,7 @@ Next we install NVM and Node.js in userspace.
 3. Install the latest Node.js with `nvm install node`.
     * If you are going to use Gulp and you have problems with Node.js 16.x (see [here](https://github.com/Lombiq/Orchard-Vue.js#prerequisites)), try downgrading to 14.x and make it the default: `nvm install 14.7.0 && nvm alias default 14.7.0`.
 
-This is good enough for launching new apps, but for example MSBuild doesn't use a login shell.
-If you have a desktop environment (through a display manager) see if the following works on your system. If yes, you can skip the rest of this section.
+This is good enough for launching new apps, but for example MSBuild doesn't use a login shell. If you have a desktop environment (through a display manager) see if the following works on your system. If yes, you can skip the rest of this section.
 
 1. Open the _~/.bashrc_ in a text editor.
 2. Open or create the _~/.xsessionrc_ file in a text editor. This is the autorun file for your dektop login session.
