@@ -5,10 +5,12 @@
     Inputs="$(PackageJson)"
     Outputs="$(NpmInstallStampFile)"
     Condition="'$(ExecNpmInstallCommand)' == 'true' AND Exists($(PackageJson))">
+
     <!-- Check if pnpm is installed. -->
-    <Exec Command="pnpm -v" ContinueOnError="true">
+    <Exec Command="pnpm -v" IgnoreExitCode="true">
       <Output TaskParameter="ExitCode" PropertyName="PnpmInstalledExitCode" />
     </Exec>
+
     <!-- Use pnpm if installed. -->
     <Exec Command="$(PnpmInstallCommand)"
           Condition="'$(PnpmInstalledExitCode)' == '0'"
