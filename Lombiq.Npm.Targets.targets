@@ -21,6 +21,7 @@
           Condition="'$(PnpmInstalledExitCode)' != '0'"
           WorkingDirectory="$(NpmTargetsWorkingDirectory)"
           EnvironmentVariables="@(NpmCommandsEnvironmentVariables)" />
+
     <!-- Ensure that the node_modules folder exists because we use it for our stamp files. -->
     <MakeDir Directories="$(NodeModulesFolderPath)" Condition="!Exists($(NodeModulesFolderPath))" />
     <Touch Files="$(NpmInstallStampFile)" AlwaysCreate="true" Condition="'$(CreateNpmInstallStampFile)' == 'true'" />
