@@ -16,7 +16,7 @@ Do you want to quickly try out this project and see it in action? Check it out i
 
 Install the [NuGet package](https://www.nuget.org/packages/Lombiq.Npm.Targets/) or if you use the project from a submodule, add the following lines to the csproj file where the _package.json_ file is. Make sure that the paths are pointing to the _Lombiq.Npm.Targets.props_ and _Lombiq.Npm.Targets.targets_ files of this project.
 
-```
+```xml
 <Import Project="path\to\Lombiq.Npm.Targets\Lombiq.Npm.Targets.props" />
 <Import Project="path\to\Lombiq.Npm.Targets\Lombiq.Npm.Targets.targets" />
 ```
@@ -27,7 +27,7 @@ An `npm run dotnet-prebuild --if-present` script will be also executed during th
 
 If you want to utilize this then add a `dotnet-prebuild` script to the _package.json_ file like this (`gulp build` is just an example of a command you can run; you can also run the default gulp command with just `gulp`):
 
-```
+```json
 {
   "private": true,
   "scripts": {
@@ -38,9 +38,11 @@ If you want to utilize this then add a `dotnet-prebuild` script to the _package.
 
 Similarly, you can execute `npm run dotnet-postclean --if-present` via the `dotnet-postclean` script to clean up anything after an MSBuild `Clean`, for example:
 
-```
-"scripts": {
-  "dotnet-postclean": "gulp clean"
+```json
+{
+  "scripts": {
+    "dotnet-postclean": "gulp clean"
+  }
 }
 ```
 
@@ -56,7 +58,7 @@ To instaall PNPM globally, run this command: `npm install pnpm -g`. Once it's co
 
 - PNPM supports restoring packages directly to a directory so it's not necessary to move _node_modules_ to a parent directory anymore.
 - It uses its own package lock file. So if you want to keep NPM compatibility, then you have to maintain both _pnpm-lock.yaml_ and _package-lock.json_ files if you want to support both.
-- It installs the latest package dependencies unless it's overriden from the _package.json_ file. For example the latest _sass_ is installed along with  _gulp-dart-sass_ that might [cause issues with Bootstrap 4](https://github.com/twbs/bootstrap/issues/34051). In this case it must be overriden with a lower version.
+- It installs the latest package dependencies unless it's overriden from the _package.json_ file. For example the latest _sass_ is installed along with _gulp-dart-sass_ that might [cause issues with Bootstrap 4](https://github.com/twbs/bootstrap/issues/34051). In this case it must be overriden with a lower version.
 
 ## Global NPM vs Userspace NPM via Node Version Manager on Linux
 
@@ -80,8 +82,7 @@ Next we install NVM and Node.js in userspace.
 3. Install the latest Node.js with `nvm install node`.
     - If you are going to use Gulp and you have problems with Node.js 16.x (see [here](https://github.com/Lombiq/Orchard-Vue.js#prerequisites)), try downgrading to 14.x and make it the default: `nvm install 14.7.0 && nvm alias default 14.7.0`.
 
-This is good enough for launching new apps, but for example MSBuild doesn't use a login shell.
-If you have a desktop environment (through a display manager) see if the following works on your system. If yes, you can skip the rest of this section.
+This is good enough for launching new apps, but for example MSBuild doesn't use a login shell. If you have a desktop environment (through a display manager) see if the following works on your system. If yes, you can skip the rest of this section.
 
 1. Open the _~/.bashrc_ in a text editor.
 2. Open or create the _~/.xsessionrc_ file in a text editor. This is the autorun file for your dektop login session.
@@ -120,6 +121,6 @@ proxy-nvm-command pnpm
 
 ## Contributing and support
 
-Bug reports, feature requests, comments, questions, code contributions, and love letters are warmly welcome, please do so via GitHub issues and pull requests. Please adhere to our [open-source guidelines](https://lombiq.com/open-source-guidelines) while doing so.
+Bug reports, feature requests, comments, questions, code contributions and love letters are warmly welcome. You can send them to us via GitHub issues and pull requests. Please adhere to our [open-source guidelines](https://lombiq.com/open-source-guidelines) while doing so.
 
 This project is developed by [Lombiq Technologies](https://lombiq.com/). Commercial-grade support is available through Lombiq.
