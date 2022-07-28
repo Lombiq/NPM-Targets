@@ -24,7 +24,6 @@
 
     <!-- Ensure that the node_modules folder exists because we use it for our stamp files. -->
     <MakeDir Directories="$(NodeModulesFolderPath)" Condition="!Exists($(NodeModulesFolderPath))" />
-
     <Touch Files="$(NpmInstallStampFile)" AlwaysCreate="true" Condition="'$(CreateNpmInstallStampFile)' == 'true'" />
   </Target>
 
@@ -52,12 +51,8 @@
     Inputs="@(NpmDotnetPrebuildWatchedFiles)"
     Outputs="$(NpmDotnetPrebuildStampFile)"
     Condition="'$(ExecDotnetPrebuildCommand)' == 'true' AND Exists($(PackageJson))">
-    <!-- Setting IgnoreStandardErrorWarningFormat="true" prevents MSBuild from setting the ExitCode to -1 when the
-      executed command actually returns 0, but logged warnings or errors during its execution. Refer to
-      https://docs.microsoft.com/en-us/visualstudio/msbuild/exec-task?view=vs-2022#remarks for more details. -->
     <Exec Command="$(NpmDotnetPrebuildCommand)"
           ConsoleToMSBuild="true"
-          IgnoreStandardErrorWarningFormat="true"
           WorkingDirectory="$(NpmTargetsWorkingDirectory)"
           EnvironmentVariables="@(NpmCommandsEnvironmentVariables)">
       <Output TaskParameter="ConsoleOutput" PropertyName="PrebuildOutput" />
