@@ -48,6 +48,7 @@
 
   <Target
     Name="NpmDotnetPrebuild"
+    DependsOnTargets="NpmInstall"
     AfterTargets="AfterResolveReferences;InitCommonNodeModules"
     BeforeTargets="EmbeddModuleAssets;OrchardCoreEmbedModuleAssets;Compile"
     Inputs="@(NpmDotnetPrebuildWatchedFiles)"
