@@ -28,7 +28,7 @@
     <Touch Files="$(NpmInstallStampFile)" AlwaysCreate="true" Condition="'$(CreateNpmInstallStampFile)' == 'true'" />
   </Target>
 
-  <!--<Target
+  <Target
     Name="DeleteDotnetPrebuildStampFile"
     AfterTargets="Clean"
     Condition="Exists($(NpmDotnetPrebuildStampFile))">
@@ -38,11 +38,13 @@
   <Target
     Name="NpmDotnetPostclean"
     AfterTargets="Clean"
-    Condition="'$(ExecDotnetPostcleanCommand)' == 'true' AND Exists($(PackageJson))">
+    Condition="'$(ExecDotnetPostcleanCommand)' == 'true' AND Exists($(PackageJson)) AND Exists($(NpmTargetsWorkingDirectory))">
     <Exec Command="$(NpmDotnetPostcleanCommand)"
           WorkingDirectory="$(NpmTargetsWorkingDirectory)"
-          EnvironmentVariables="@(NpmCommandsEnvironmentVariables)" />
-  </Target>-->
+          EnvironmentVariables="@(NpmCommandsEnvironmentVariables)"
+          IgnoreExitCode="true"
+          IgnoreStandardErrorWarningFormat="true" />
+  </Target>
 
   <Target
     Name="NpmDotnetPrebuild"
