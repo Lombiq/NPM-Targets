@@ -11,7 +11,6 @@
       <Output TaskParameter="ExitCode" PropertyName="PnpmInstalledExitCode" />
     </Exec>
 
-    <Message Text="NPM-TARGETS: Calling pnpm install in $(NpmTargetsWorkingDirectory)" Importance="High" />
     <!-- Use pnpm if installed. -->
     <Exec Command="$(PnpmInstallCommand)"
           Condition="'$(PnpmInstalledExitCode)' == '0'"
