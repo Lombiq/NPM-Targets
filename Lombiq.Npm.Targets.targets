@@ -37,10 +37,12 @@
   <Target
     Name="NpmDotnetPostclean"
     AfterTargets="Clean"
-    Condition="'$(ExecDotnetPostcleanCommand)' == 'true' AND Exists($(PackageJson))">
+    Condition="'$(ExecDotnetPostcleanCommand)' == 'true' AND Exists($(PackageJson)) AND Exists($(NpmTargetsWorkingDirectory))">
     <Exec Command="$(NpmDotnetPostcleanCommand)"
           WorkingDirectory="$(NpmTargetsWorkingDirectory)"
-          EnvironmentVariables="@(NpmCommandsEnvironmentVariables)" />
+          EnvironmentVariables="@(NpmCommandsEnvironmentVariables)"
+          IgnoreExitCode="true"
+          IgnoreStandardErrorWarningFormat="true" />
   </Target>
 
   <Target
