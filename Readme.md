@@ -58,7 +58,7 @@ To instaall PNPM globally, run this command: `npm install pnpm -g`. Once it's co
 
 - PNPM supports restoring packages directly to a directory so it's not necessary to move _node_modules_ to a parent directory anymore.
 - It uses its own package lock file. So if you want to keep NPM compatibility, then you have to maintain both _pnpm-lock.yaml_ and _package-lock.json_ files if you want to support both.
-- It installs the latest package dependencies unless it's overriden from the _package.json_ file. For example the latest _sass_ is installed along with _gulp-dart-sass_ that might [cause issues with Bootstrap 4](https://github.com/twbs/bootstrap/issues/34051). In this case it must be overriden with a lower version.
+- It installs the latest package dependencies unless it's overridden from the _package.json_ file. For example the latest _sass_ is installed along with _gulp-dart-sass_ that might [cause issues with Bootstrap 4](https://github.com/twbs/bootstrap/issues/34051). In this case it must be overriden with a lower version.
 
 ## Global NPM vs Userspace NPM via Node Version Manager on Linux
 
