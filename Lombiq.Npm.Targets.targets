@@ -39,7 +39,7 @@
   <Target
     Name="NpmDotnetPrebuild"
     AfterTargets="InitCommonNodeModules;NpmInstall"
-    BeforeTargets="EmbeddModuleAssets;Compile"
+    BeforeTargets="OrchardCoreEmbedModuleAssets;Compile"
     Inputs="@(NpmDotnetPrebuildWatchedFiles)"
     Outputs="$(NpmDotnetPrebuildStampFile)"
     Condition="'$(ExecDotnetPrebuildCommand)' == 'true' AND Exists('package.json')">
