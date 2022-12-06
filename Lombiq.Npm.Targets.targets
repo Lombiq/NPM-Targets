@@ -36,10 +36,14 @@
     <Exec Command="$(NpmDotnetPostcleanCommand)" />
   </Target>
 
+  <!--
+    EmbeddModuleAssets (sic!) was renamed to OrchardCoreEmbedModuleAssets (first released in Orchard Core 1.4), but
+    we're keeping it here for backwards compatibility.
+  -->
   <Target
     Name="NpmDotnetPrebuild"
     AfterTargets="InitCommonNodeModules;NpmInstall"
-    BeforeTargets="OrchardCoreEmbedModuleAssets;Compile"
+    BeforeTargets="EmbeddModuleAssets;OrchardCoreEmbedModuleAssets;Compile"
     Inputs="@(NpmDotnetPrebuildWatchedFiles)"
     Outputs="$(NpmDotnetPrebuildStampFile)"
     Condition="'$(ExecDotnetPrebuildCommand)' == 'true' AND Exists('package.json')">
