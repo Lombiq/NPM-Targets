@@ -45,6 +45,10 @@
           IgnoreStandardErrorWarningFormat="true" />
   </Target>
 
+  <!--
+    EmbeddModuleAssets (sic!) was renamed to OrchardCoreEmbedModuleAssets (first released in Orchard Core 1.4), but
+    we're keeping it here for backwards compatibility.
+  -->
   <Target
     Name="NpmDotnetPrebuild"
     DependsOnTargets="NpmInstall"
