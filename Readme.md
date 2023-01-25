@@ -8,7 +8,7 @@ Provides automatic NPM package installation and a custom NPM command execution b
 
 Note, that these operations are optimized by running them only if the corresponding files have been changed.
 
-Also see our [Gulp Extensions](https://github.com/Lombiq/Gulp-Extensions) library that contains some useful Gulp helpers.
+Also see our [Node.js Extensions](https://github.com/Lombiq/NodeJs-Extensions) project, which contains complete asset pipelines built on top of this project.
 
 Do you want to quickly try out this project and see it in action? Check it out in our [Open-Source Orchard Core Extensions](https://github.com/Lombiq/Open-Source-Orchard-Core-Extensions) full Orchard Core solution and also see our other useful Orchard Core-related open-source projects!
 
@@ -23,15 +23,21 @@ Install the [NuGet package](https://www.nuget.org/packages/Lombiq.Npm.Targets/) 
 
 The `npm install` (or `pnpm install`, see below) command will be executed but only if the _package.json_ file exists and has been changed since the last build (i.e. you un/installed packages or up/downgraded ones). Note that if you update NPM then the _package.json_ and _package-lock.json_ files can change on `npm install`; currently, [there's no way to prevent this](https://github.com/npm/cli/issues/564) (`npm ci` is much slower).
 
-An `npm run dotnet-prebuild --if-present` script will be also executed during the build process which can be utilized to run a Gulp task for example. This will only happen if the files defined in `NpmDotnetPrebuildWatchedFiles` have changed (to achieve [incremental build](https://docs.microsoft.com/en-us/visualstudio/msbuild/how-to-build-incrementally?view=vs-2019)).
+An `npm run dotnet-prebuild --if-present` script will be also executed during the build process which can be utilized to run a custom task. This will only happen if the files defined in `NpmDotnetPrebuildWatchedFiles` have changed (to achieve [incremental build](https://docs.microsoft.com/en-us/visualstudio/msbuild/how-to-build-incrementally?view=vs-2019)). By default, these files contain _package.json_, _Assets/\*\*/\*.\*_, _Scripts/\*\*/\*.\*_, and _Styles/\*\*/\*.\*_. If you want to adjust this list to cover your custom folders and files, override the given MSBuild item in your project file as follows:
 
-If you want to utilize this then add a `dotnet-prebuild` script to the _package.json_ file like this (`gulp build` is just an example of a command you can run; you can also run the default gulp command with just `gulp`):
+```xml
+<ItemGroup>
+  <NpmDotnetPrebuildWatchedFiles Include="package.json;CustomFolder/**/*.*" />
+</ItemGroup>
+```
+
+If you want to utilize this then add a `dotnet-prebuild` script to the _package.json_ file as follows (`npm run build` is just an example command):
 
 ```json
 {
   "private": true,
   "scripts": {
-    "dotnet-prebuild": "gulp build"
+    "dotnet-prebuild": "npm run build"
   }
 }
 ```
@@ -41,7 +47,7 @@ Similarly, you can execute `npm run dotnet-postclean --if-present` via the `dotn
 ```json
 {
   "scripts": {
-    "dotnet-postclean": "gulp clean"
+    "dotnet-postclean": "npm run clean"
   }
 }
 ```
@@ -57,12 +63,11 @@ To install PNPM globally, run this command: `npm install pnpm -g`. Once it's com
 ### Notes
 
 - PNPM supports restoring packages directly to a directory so it's not necessary to move _node_modules_ to a parent directory anymore.
-- It uses its own package lock file. So if you want to keep NPM compatibility, then you have to maintain both _pnpm-lock.yaml_ and _package-lock.json_ files if you want to support both.
-- It installs the latest package dependencies unless it's overridden from the _package.json_ file. For example the latest _sass_ is installed along with _gulp-dart-sass_ that might [cause issues with Bootstrap 4](https://github.com/twbs/bootstrap/issues/34051). In this case it must be overridden with a lower version.
+- It uses its own package lock file. Thus, if you want to keep NPM compatibility, then you have to maintain both _pnpm-lock.yaml_ and _package-lock.json_ files.
 
 ## Global NPM vs Userspace NPM via Node Version Manager on Linux
 
-If you installed NPM from your package manager, you will likely suffer an `EACCES` error when you try to install a package globally. The [recommended solution](https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally#reinstall-npm-with-a-node-version-manager) is to install NPM via the Node Version Manager (NVM). This is what you should do:
+If you installed NPM from your package manager, you will likely suffer an `EACCES` error when you try to install a package globally. The [recommended solution](https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally/#reinstall-npm-with-a-node-version-manager) is to install NPM via the Node Version Manager (NVM). This is what you should do:
 
 Before we start, ensure your directories are set up:
 
