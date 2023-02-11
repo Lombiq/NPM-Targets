@@ -54,18 +54,19 @@ Similarly, you can execute `npm run dotnet-postclean --if-present` via the `dotn
 
 ## Using PNPM for package restore
 
-[PNPM](https://pnpm.io/) is a faster and more efficient package manager. If it's installed globally, then the module will use `pnpm` instead of `npm` to restore packages.
+[PNPM](https://pnpm.io/) is a faster and more efficient package manager. If it's available, then the module will use `pnpm` instead of `npm` to restore packages.
 
 ### Installation and usage
 
-To install PNPM globally, run this command: `npm install pnpm -g`. Once it's complete, the module will automatically use that to restore packages.
+On Node.js >=16.9.0 and >=14.19.0, `pnpm` can be invoked seamlessly after enabling the [Corepack](https://nodejs.org/api/corepack.html#corepack_corepack) tool. Simply execute `corepack enable` once before using this module.
+
+On older Node.js versions you can install PNPM globally by running this command: `npm install pnpm -g`.
 
 ### Notes
 
-- PNPM supports restoring packages directly to a directory so it's not necessary to move _node_modules_ to a parent directory anymore.
-- It uses its own package lock file. Thus, if you want to keep NPM compatibility, then you have to maintain both _pnpm-lock.yaml_ and _package-lock.json_ files.
+PNPM uses its own package lock file. Thus, if you want to stay compatible with NPM, then you have to maintain both _pnpm-lock.yaml_ and _package-lock.json_ files.
 
-## Global NPM vs Userspace NPM via Node Version Manager on Linux
+## Linux: Global NPM vs Userspace NPM via Node Version Manager
 
 If you installed NPM from your package manager, you will likely suffer an `EACCES` error when you try to install a package globally. The [recommended solution](https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally/#reinstall-npm-with-a-node-version-manager) is to install NPM via the Node Version Manager (NVM). This is what you should do:
 
@@ -77,7 +78,7 @@ mkdir -p "$XDG_CONFIG_HOME"
 mkdir -p "$HOME/.local/bin"
 ```
 
-Also if you have installed NPM globally via your package manager, uninstall it to avoid future confusion.
+Also, if you have installed NPM globally via your package manager, uninstall it to avoid future confusion.
 
 Next we install NVM and Node.js in userspace.
 
@@ -85,7 +86,7 @@ Next we install NVM and Node.js in userspace.
 2. Type `nvm`.
     - If you get _nvm: command not found_ error, reload your shell profile first (`source ~/.bashrc`) and try again.
 3. Install the latest Node.js with `nvm install node`.
-    - If you are going to use Gulp and you have problems with Node.js 16.x (see [here](https://github.com/Lombiq/Orchard-Vue.js#prerequisites)), try downgrading to 14.x and make it the default: `nvm install 14.7.0 && nvm alias default 14.7.0`.
+    - If you are going to use Gulp and you have problems with Node.js 16.x (see [here](https://github.com/Lombiq/Orchard-Vue.js#prerequisites)), try downgrading to 14.x and make it the default: `nvm install 14 && nvm alias default 14`.
 
 This is good enough for launching new apps, but for example MSBuild doesn't use a login shell. If you have a desktop environment (through a display manager) see if the following works on your system. If yes, you can skip the rest of this section.
 
@@ -93,6 +94,7 @@ This is good enough for launching new apps, but for example MSBuild doesn't use 
 2. Open or create the _~/.xsessionrc_ file in a text editor. This is the autorun file for your desktop login session.
 3. Copy the new lines at the bottom of _~/.bashrc_ created by the NVM installer and append them to the end of the _~/.xsessionrc_.
 4. Save everything, log out and log back it.
+
 If everything went well you can now successfully build your `Lombiq.Npm.Targets`-using project as your IDE will already be in an NVM enabled environment when you start it up.
 
 You need to set up some proxy commands for `node` and `npm`:
