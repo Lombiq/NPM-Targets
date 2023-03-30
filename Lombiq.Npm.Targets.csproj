@@ -4,7 +4,6 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <DefaultItemExcludes>$(DefaultItemExcludes);.git*;node_modules/**</DefaultItemExcludes>
     <IsPublishable>false</IsPublishable>
-    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -24,6 +23,7 @@
     <None Include="Readme.md" />
     <None Include="NuGetIcon.png" Pack="true" PackagePath="" />
     <None Include="build/**" Pack="true" PackagePath="build/" />
+    <None Include="Lombiq.Npm.Targets.props" Pack="true" PackagePath="Lombiq.Npm.Targets.props" />
     <None Include="*.props" Pack="true" PackagePath="" />
     <None Include="*.targets" Pack="true" PackagePath="" />
   </ItemGroup>
