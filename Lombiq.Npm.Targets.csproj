@@ -4,6 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <DefaultItemExcludes>$(DefaultItemExcludes);.git*;node_modules/**</DefaultItemExcludes>
     <IsPublishable>false</IsPublishable>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <PropertyGroup>
