@@ -15,11 +15,10 @@
     <PackageTags>Lombiq;NPM;Node.js;MSBuild</PackageTags>
     <RepositoryUrl>https://github.com/Lombiq/NPM-Targets</RepositoryUrl>
     <PackageProjectUrl>https://github.com/Lombiq/NPM-Targets</PackageProjectUrl>
-    <PackageLicenseFile>License.md</PackageLicenseFile>
+    <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="License.md" Pack="true" PackagePath="" />
     <None Include="Readme.md" />
     <None Include="NuGetIcon.png" Pack="true" PackagePath="" />
     <None Include="build/**" Pack="true" PackagePath="build/" />
