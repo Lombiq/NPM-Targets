@@ -82,7 +82,7 @@ If you intend to do something more advanced with Node.js dependencies, you may w
            <Subdirectory>dist</Subdirectory>
          </Vendor>
      ```
-   - Even if you want to copy the whole package directory, include an empty `<Subdirectory />` element, otherwise you'll get a warning.
+   - If you want to copy the whole package directory, include an empty `<Subdirectory />` element, otherwise you'll get a warning.
 3. After build, it will copy the contents of the selected subdirectory into _./wwwroot/vendors/{package_name}_ directory.
    For example the contents of _./node_modules/chart.js/dist_ are copied into _./wwwroot/vendors/chart.js_.
 
