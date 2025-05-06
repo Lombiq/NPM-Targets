@@ -98,7 +98,7 @@
         {
             var document = XDocument.Load(projectFilePath);
             var vendors = document.Root.XPathSelectElements("//ItemGroup/Vendor");
-            var targetBase = Path.Combine(projectPath, "wwwroot", "vendor");
+            var targetBase = Path.Combine(projectPath, "wwwroot", "vendors");
 
             if (!Directory.Exists(targetBase)) Directory.CreateDirectory(targetBase);
 
