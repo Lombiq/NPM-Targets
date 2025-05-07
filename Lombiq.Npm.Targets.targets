@@ -1,5 +1,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
+  <Import Project="build/LoadCopyVendorsTask.targets" />
+
   <Target
     Name="NpmInstall"
     Inputs="$(PackageJson)"
@@ -70,9 +72,7 @@
           EnvironmentVariables="@(NpmCommandsEnvironmentVariables)">
       <Output TaskParameter="ConsoleOutput" PropertyName="PrebuildOutput" />
     </Exec>
-    <CopyVendors ProjectPath="$(MSBuildProjectDirectory)"
-                 ProjectFilePath="$(MSBuildProjectFullPath)"
-                 LibraryPath="$(MSBuildThisFileDirectory)" />
+    <CopyVendors ProjectPath="$(MSBuildProjectDirectory)" ProjectFileName="$(MSBuildProjectFile)" />
   </Target>
 
 </Project>
