@@ -86,6 +86,9 @@ If you intend to do something more advanced with Node.js dependencies, you may w
 3. After build, it will copy the contents of the selected subdirectory into _./wwwroot/vendors/{package_name}_ directory.
    For example the contents of _./node_modules/chart.js/dist_ are copied into _./wwwroot/vendors/chart.js_.
 
+> [!WARNING]
+> The `<Vendor>` elements are interpreted by a separate task that only looks at the current project's file (usually _NameOfProject.csproj_). It does not evaluate MSBuild properties or other substitutions. It does not look for `<Vendor>` elements in other files included via `<Import>` or in files like _Directory.Build.props_. 
+
 ## Using PNPM
 
 [PNPM](https://pnpm.io/) is a faster and more efficient package manager. If it's available in the current shell, NPM Targets will use `pnpm` instead of `npm` to restore packages.
