@@ -40,6 +40,9 @@ public class CopyVendors : Task
     {
         var path = Path.Combine(projectPath, vendor.Attributes("Include").First().Value);
         var name = Path.GetFileName(path);
+        var target = Path.Combine(
+            targetBase,
+            vendor.XPathSelectElement("./CopyTo")?.Value?.Trim() is { Length: > 0 } copyTo ? copyTo : name);
 
         if (!Directory.Exists(path))
         {
@@ -47,35 +50,45 @@ public class CopyVendors : Task
             return;
         }
 
-        if (vendor.XPathSelectElement("./Subdirectory") is { } subdirectory)
+        if (Directory.Exists(target)) Directory.Delete(target, recursive: true);
+
+        var subdirectories = vendor
+            .XPathSelectElements("./Subdirectory")
+            .Select(subdirectory => subdirectory.Value)
+            .ToList();
+        if (subdirectories.Count > 0)
         {
-            path = Path.Combine(path, subdirectory.Value);
-            if (!Directory.Exists(path))
+            foreach (var subdirectory in subdirectories)
             {
-                Log.LogError(
-                    $"NPM package \"{name}\" with subdirectory path \"{subdirectory.Value}\" does not exist " +
-                    $"(expected path: \"{path}\").");
-                return;
+                var source = new DirectoryInfo(Path.Combine(path, subdirectory));
+                if (source.Exists)
+                {
+                    CopyDirectory(source, target);
+                }
+                else
+                {
+                    Log.LogError(
+                        $"NPM package \"{name}\" with subdirectory path \"{subdirectory}\" does not exist " +
+                        $"(expected path: \"{path}\").");
+                }
             }
+
+            return;
+        }
+
+        if (Directory.Exists(Path.Combine(path, "dist")))
+        {
+            path = Path.Combine(path, "dist");
         }
         else
         {
-            if (Directory.Exists(Path.Combine(path, "dist")))
-            {
-                path = Path.Combine(path, "dist");
-            }
-            else
-            {
-                Log.LogWarning(
-                    $"NPM package item for \"{name}\" does not specify a \u003cSubdirectory\u003e{{value}}" +
-                    $"\u003c/Subdirectory\u003e child element and the default \"dist\" subdirectory does not " +
-                    $"exist. Please add a \u003cSubdirectory\u003e. Leave it empty if you want to copy the whole " +
-                    $"package directory.");
-            }
+            Log.LogWarning(
+                $"NPM package item for \"{name}\" does not specify a \u003cSubdirectory\u003e{{value}}" +
+                $"\u003c/Subdirectory\u003e child element and the default \"dist\" subdirectory does not " +
+                $"exist. Please add a \u003cSubdirectory\u003e. Leave it empty if you want to copy the whole " +
+                $"package directory.");
         }
 
-        var target = Path.Combine(targetBase, name);
-        if (Directory.Exists(target)) Directory.Delete(target, recursive: true);
         CopyDirectory(new(path), target);
     }
 
