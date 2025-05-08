@@ -64,6 +64,7 @@ Similarly, you can execute `npm run dotnet-postclean --if-present` via the `dotn
 If you intend to do something more advanced with Node.js dependencies, you may want to use our [Node.js Extensions](https://github.com/Lombiq/NodeJs-Extensions) project instead. But if you just want to fetch vendor packages from NPM and copy them into _./wwwroot/vendors_ directory, follow these steps:
 
 1. Make sure the _package.json_ file contains the desired NPM packages in the `dependencies` or `devDependencies` section. For example:
+
    ```json
    {
      "private": true,
@@ -74,23 +75,25 @@ If you intend to do something more advanced with Node.js dependencies, you may w
      }
    }
    ```
+
 2. In your _.csproj_ file, find an `<ItemGroup>` and add `<Vendor Include="node_modules/{package_name}" />` items for each.
    - If the distribution files are located in a _dist_ subdirectory of the package (e.g. _./node_modules/chart.js/dist_), then you are good to go.
-   - Otherwise, include a child element `<Subdirectory>some/other/path</Subdirectory>` 
+   - Otherwise, include a child element `<Subdirectory>some/other/path</Subdirectory>`
+
      ```xml
-         <Vendor Include="node_modules/chart.js">
-           <Subdirectory>dist</Subdirectory>
-         </Vendor>
+     <Vendor Include="node_modules/chart.js">
+       <Subdirectory>dist</Subdirectory>
+     </Vendor>
      ```
+
      > [!TIP]
      > You can include multiple `<Subdirectory>` elements. In this case all of them must exist and they will be all copied into the same output directory.
    - If you want to copy the whole package directory, include an empty `<Subdirectory />` element, otherwise you'll get a warning.
    - If you want to copy into a different directory inside _./wwwroot/vendors_, you can also add a `<CopyTo>path/relative/to/vendors</CopyTo>` child element.
-3. After build, it will copy the contents of the selected subdirectory into _./wwwroot/vendors/{package_name}_ directory.
-   For example the contents of _./node_modules/chart.js/dist_ are copied into _./wwwroot/vendors/chart.js_.
+3. After build, it will copy the contents of the selected subdirectory into _./wwwroot/vendors/{package_name}_ directory. For example the contents of _./node_modules/chart.js/dist_ are copied into _./wwwroot/vendors/chart.js_.
 
 > [!WARNING]
-> The `<Vendor>` elements are interpreted by a separate task that only looks at the current project's file (usually _NameOfProject.csproj_). It does not evaluate MSBuild properties or other substitutions. It does not look for `<Vendor>` elements in other files included via `<Import>` or in files like _Directory.Build.props_. 
+> The `<Vendor>` elements are interpreted by a separate task that only looks at the current project's file (usually _NameOfProject.csproj_). It does not evaluate MSBuild properties or other substitutions. It does not look for `<Vendor>` elements in other files included via `<Import>` or in files like _Directory.Build.props_.
 
 ## Using PNPM
 
