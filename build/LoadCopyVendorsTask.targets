@@ -1,0 +1,15 @@
+<Project>
+
+  <!-- Based on https://github.com/Lombiq/NodeJs-Extensions/blob/e5e2dfe1646ffe26f6e856fa8d0b32e0fad57d96/Lombiq.NodeJs.Extensions/build/LoadExecWithMutexTask.targets. -->
+  <PropertyGroup>
+    <NpmTargetsRoot>$(MSBuildThisFileDirectory)/..</NpmTargetsRoot>
+    <NpmTargetsAssemblyName>Lombiq.Npm.Targets.dll</NpmTargetsAssemblyName>
+    <NpmTargetsAssemblyPath
+      Condition="!Exists('$(NpmTargetsRoot)/lib')">$(NpmTargetsRoot)/bin/$(Configuration)/netstandard2.0/$(NpmTargetsAssemblyName)</NpmTargetsAssemblyPath>
+    <NpmTargetsAssemblyPath
+      Condition="Exists('$(NpmTargetsRoot)/lib')">$(NpmTargetsRoot)/lib/netstandard2.0/$(NpmTargetsAssemblyName)</NpmTargetsAssemblyPath>
+  </PropertyGroup>
+
+  <UsingTask AssemblyFile="$(NpmTargetsAssemblyPath)" TaskName="CopyVendors" TaskFactory="TaskHostFactory" />
+
+</Project>
