@@ -54,7 +54,7 @@
   <Target
     Name="NpmDotnetPrebuild"
     DependsOnTargets="NpmInstall"
-    AfterTargets="AfterResolveReferences;InitCommonNodeModules"
+    AfterTargets="InitCommonNodeModules"
     BeforeTargets="EmbeddModuleAssets;OrchardCoreEmbedModuleAssets;ResolveReferences"
     Inputs="@(NpmDotnetPrebuildWatchedFiles)"
     Outputs="$(NpmDotnetPrebuildStampFile)"
@@ -64,7 +64,7 @@
            Condition="'$(CreateDotnetPrebuildStampFile)' == 'true'"
            AlwaysCreate="true" />
     <ItemGroup>
-      <EmbeddedResource Include="$(MSBuildProjectDirectory)\wwwroot\vendors\**\*">
+      <EmbeddedResource Include="wwwroot\vendors\**\*">
         <Type>Non-Resx</Type>
       </EmbeddedResource>
     </ItemGroup>
