@@ -55,7 +55,7 @@
     Name="NpmDotnetPrebuild"
     DependsOnTargets="NpmInstall"
     AfterTargets="AfterResolveReferences;InitCommonNodeModules"
-    BeforeTargets="EmbeddModuleAssets;OrchardCoreEmbedModuleAssets;PrepareResourceNames;Compile"
+    BeforeTargets="EmbeddModuleAssets;OrchardCoreEmbedModuleAssets;ResolveReferences"
     Inputs="@(NpmDotnetPrebuildWatchedFiles)"
     Outputs="$(NpmDotnetPrebuildStampFile)"
     Condition="'$(ExecDotnetPrebuildCommand)' == 'true' AND Exists($(PackageJson))">
@@ -63,6 +63,11 @@
     <Touch Files="$(NpmDotnetPrebuildStampFile)"
            Condition="'$(CreateDotnetPrebuildStampFile)' == 'true'"
            AlwaysCreate="true" />
+    <ItemGroup>
+      <EmbeddedResource Include="$(MSBuildProjectDirectory)\wwwroot\vendors\**\*">
+        <Type>Non-Resx</Type>
+      </EmbeddedResource>
+    </ItemGroup>
   </Target>
 
   <Target Name="_NpmDotnetPrebuild">
