@@ -48,8 +48,8 @@ public class CopyVendors : Task
             vendor.XPathSelectElement("./CopyTo")?.Value?.Trim() is { Length: > 0 } copyTo ? copyTo : name);
 
         var patterns = vendor
-                .Attributes("Pattern")
-                .Select(item => item.Value.Trim())
+                .XPathSelectElements("./Pattern")
+                .Select(pattern => pattern.Value.Trim())
                 .Where(pattern => !string.IsNullOrEmpty(pattern))
                 .ToList() is { Count: > 0 } customPatterns
             ? customPatterns
