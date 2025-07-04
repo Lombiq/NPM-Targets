@@ -63,6 +63,11 @@
     <Touch Files="$(NpmDotnetPrebuildStampFile)"
            Condition="'$(CreateDotnetPrebuildStampFile)' == 'true'"
            AlwaysCreate="true" />
+    <ItemGroup>
+      <EmbeddedResource Include="wwwroot\vendors\**\*">
+        <Type>Non-Resx</Type>
+      </EmbeddedResource>
+    </ItemGroup>
   </Target>
 
   <Target Name="_NpmDotnetPrebuild">

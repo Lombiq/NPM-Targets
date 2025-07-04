@@ -86,7 +86,7 @@ If you intend to do something more advanced with Node.js dependencies, you may w
      </Vendor>
      ```
 
-     Note that you can include multiple `<Subdirectory>` elements. In this case all of them must exist and they will be all copied into the same output directory.
+     Note that you can include multiple `<Subdirectory>` elements. In this case all of them must exist, and they will be all copied into the same output directory.
    - If you want to copy the whole package directory, include an empty `<Subdirectory />` element, otherwise you'll get a warning.
    - If you want to copy into a different directory inside _./wwwroot/vendors_, you can also add a `<CopyTo>path/relative/to/vendors</CopyTo>` child element.
 3. After build, it will copy the contents of the selected subdirectory into _./wwwroot/vendors/{package_name}_ directory. For example the contents of _./node_modules/chart.js/dist_ are copied into _./wwwroot/vendors/chart.js_.
