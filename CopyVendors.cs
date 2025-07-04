@@ -1,8 +1,5 @@
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
-using Microsoft.Extensions.FileSystemGlobbing;
-using Microsoft.Extensions.FileSystemGlobbing.Abstractions;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
@@ -47,14 +44,6 @@ public class CopyVendors : Task
             targetBase,
             vendor.XPathSelectElement("./CopyTo")?.Value?.Trim() is { Length: > 0 } copyTo ? copyTo : name);
 
-        var patterns = vendor
-                .XPathSelectElements("./Pattern")
-                .Select(pattern => pattern.Value.Trim())
-                .Where(pattern => !string.IsNullOrEmpty(pattern))
-                .ToList() is { Count: > 0 } customPatterns
-            ? customPatterns
-            : ["**\\*"];
-
         if (!Directory.Exists(path))
         {
             Log.LogError($"NPM package \"{name}\" does not exist (expected path: \"{path}\").");
@@ -74,7 +63,7 @@ public class CopyVendors : Task
                 var source = new DirectoryInfo(Path.Combine(path, subdirectory));
                 if (source.Exists)
                 {
-                    CopyDirectory(source, target, patterns);
+                    CopyDirectory(source, target);
                 }
                 else
                 {
@@ -100,33 +89,21 @@ public class CopyVendors : Task
                 $"package directory.");
         }
 
-        CopyDirectory(new(path), target, patterns);
+        CopyDirectory(new(path), target);
     }
 
-    private void CopyDirectory(DirectoryInfo source, string target, List<string> patterns)
+    private static void CopyDirectory(DirectoryInfo source, string target)
     {
         Directory.CreateDirectory(target);
 
-        var matcher = new Matcher();
-        matcher.AddIncludePatterns(patterns);
-
-        if (matcher.Execute(new DirectoryInfoWrapper(source)).Files.Select(file => file.Path).ToList() is not { Count: > 0 } files)
+        foreach (var file in source.GetFiles())
         {
-            var plural = patterns.Count == 1 ? string.Empty : "s";
-            var patternsText = string.Join(", ", patterns.Select(pattern => $"\"{pattern}\""));
-
-            Log.LogError(
-                $"Couldn't find any files that match the pattern{plural} {patternsText} in the directory " +
-                $"\"{source.FullName}\".");
-            return;
+            file.CopyTo(Path.Combine(target, file.Name));
         }
 
-        foreach (var file in files)
+        foreach (var subdirectory in source.GetDirectories())
         {
-            var destinationPath = Path.Combine(target, file);
-
-            Directory.CreateDirectory(Path.GetDirectoryName(destinationPath));
-            File.Copy(Path.Combine(source.FullName, file), destinationPath, overwrite: true);
+            CopyDirectory(subdirectory, Path.Combine(target, subdirectory.Name));
         }
     }
 }

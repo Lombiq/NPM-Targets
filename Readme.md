@@ -83,14 +83,12 @@ If you intend to do something more advanced with Node.js dependencies, you may w
      ```xml
      <Vendor Include="node_modules/chart.js">
        <Subdirectory>dist</Subdirectory>
-       <Pattern>chart.umd*.js</Pattern>
      </Vendor>
      ```
 
      Note that you can include multiple `<Subdirectory>` elements. In this case all of them must exist, and they will be all copied into the same output directory.
    - If you want to copy the whole package directory, include an empty `<Subdirectory />` element, otherwise you'll get a warning.
    - If you want to copy into a different directory inside _./wwwroot/vendors_, you can also add a `<CopyTo>path/relative/to/vendors</CopyTo>` child element.
-   - If you only want to copy specific files (useful to avoid clutter when there is no separate _dist_ directory) you can add one or more `Pattern` elements. Each can contain one [glob pattern](https://learn.microsoft.com/en-us/dotnet/core/extensions/file-globbing).
 3. After build, it will copy the contents of the selected subdirectory into _./wwwroot/vendors/{package_name}_ directory. For example the contents of _./node_modules/chart.js/dist_ are copied into _./wwwroot/vendors/chart.js_.
 
 > [!WARNING]
