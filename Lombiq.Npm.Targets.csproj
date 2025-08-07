@@ -36,9 +36,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Build.Framework" Version="17.14.7" />
-    <PackageReference Include="Microsoft.Build.Tasks.Core" Version="17.13.26" />
-    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="17.14.7" />
+    <PackageReference Include="Microsoft.Build.Framework" Version="17.14.8" />
+    <PackageReference Include="Microsoft.Build.Tasks.Core" Version="17.14.8" />
+    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="17.14.8" />
   </ItemGroup>
 
 </Project>
