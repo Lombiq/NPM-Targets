@@ -28,7 +28,7 @@ Install the [NuGet package](https://www.nuget.org/packages/Lombiq.Npm.Targets/),
 <Import Project="path\to\Lombiq.Npm.Targets\Lombiq.Npm.Targets.targets" />
 ```
 
-The `npm install` (or `pnpm install`, see below) command will be executed but only if the _package.json_ file exists and has been changed since the last build (i.e. you un/installed or up/downgraded packages). Note that if you update NPM then the _package.json_ and _package-lock.json_ files can change on `npm install`; currently, [there's no way to prevent this](https://github.com/npm/cli/issues/564) (`npm ci` is much slower).
+The `npm install` (or `pnpm install`, see below) command will be executed but only if the _package.json_ file exists and has been changed since the last build (i.e. you un/installed or up/downgraded packages). Note that if you update NPM then the _package.json_ and _package-lock.json_ files can change on `npm install`; an alternative would be to use `npm install --save false` [see here](https://github.com/npm/cli/issues/564#issuecomment-2793297631) (`npm ci` is much slower).
 
 An `npm run dotnet-prebuild --if-present` script will be also executed during the build process, which can be utilized to run a custom task. This will only happen if the files defined in `NpmDotnetPrebuildWatchedFiles` have changed (to achieve [incremental build](https://learn.microsoft.com/en-us/visualstudio/msbuild/how-to-build-incrementally)). By default, these files contain _package.json_, _Assets/\*\*/\*.\*_, _Scripts/\*\*/\*.\*_, and _Styles/\*\*/\*.\*_. If you want to adjust this list to cover your custom folders and files, override the given MSBuild item in your project file as follows:
 
