@@ -15,8 +15,6 @@ We at [Lombiq](https://lombiq.com/) also used this utility for the following pro
 
 Do you want to quickly try out this project and see it in action? Check it out in our [Open-Source Orchard Core Extensions](https://github.com/Lombiq/Open-Source-Orchard-Core-Extensions) full Orchard Core solution and also see our other useful Orchard Core-related open-source projects!
 
-Also see our [Node.js Extensions](https://github.com/Lombiq/NodeJs-Extensions) project, which contains complete asset pipelines built on top of this project.
-
 Do you want to quickly try out this project and see it in action? Check it out in our [Open-Source Orchard Core Extensions](https://github.com/Lombiq/Open-Source-Orchard-Core-Extensions) full Orchard Core solution and also see our other useful Orchard Core-related open-source projects!
 
 ## How to use
@@ -61,7 +59,7 @@ Similarly, you can execute `npm run dotnet-postclean --if-present` via the `dotn
 
 ## Copying vendor libraries into _wwwroot_
 
-If you intend to do something more advanced with Node.js dependencies, you may want to use our [Node.js Extensions](https://github.com/Lombiq/NodeJs-Extensions) project instead. But if you just want to fetch vendor packages from NPM and copy them into _./wwwroot/vendors_ directory, follow these steps:
+If you just want to fetch vendor packages from NPM and copy them into _./wwwroot/vendors_ directory, follow these steps:
 
 1. Make sure the _package.json_ file contains the desired NPM packages in the `dependencies` or `devDependencies` section. For example:
 
