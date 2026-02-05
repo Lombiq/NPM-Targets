@@ -84,9 +84,9 @@ public class CopyVendors : Task
         {
             Log.LogWarning(
                 $"NPM package item for \"{name}\" does not specify a \u003cSubdirectory\u003e{{value}}" +
-                $"\u003c/Subdirectory\u003e child element and the default \"dist\" subdirectory does not " +
-                $"exist. Please add a \u003cSubdirectory\u003e. Leave it empty if you want to copy the whole " +
-                $"package directory.");
+                "\u003c/Subdirectory\u003e child element and the default \"dist\" subdirectory does not " +
+                "exist. Please add a \u003cSubdirectory\u003e. Leave it empty if you want to copy the whole " +
+                "package directory.");
         }
 
         CopyDirectory(new(path), target);
