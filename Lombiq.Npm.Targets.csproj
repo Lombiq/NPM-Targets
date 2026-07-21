@@ -34,7 +34,7 @@
     <PackageReference Include="Microsoft.Build.Framework" Version="18.4.0" />
     <PackageReference Include="Microsoft.Build.Tasks.Core" Version="18.4.0" />
     <PackageReference Include="Microsoft.Build.Utilities.Core" Version="18.4.0" />
-    <PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.6" />
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.10" />
   </ItemGroup>
 
   <Import Condition="'$(NuGetBuild)' != 'true'" Project="../../Utilities/Lombiq.MSBuild.Targets/Lombiq.MSBuild.Base.Sdk/Sdk/Import.targets" />
