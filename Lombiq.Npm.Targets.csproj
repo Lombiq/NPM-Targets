@@ -31,9 +31,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Build.Framework" Version="18.7.1" />
-    <PackageReference Include="Microsoft.Build.Tasks.Core" Version="18.7.1" />
-    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="18.7.1" />
+    <PackageReference Include="Microsoft.Build.Framework" Version="18.8.2" />
+    <PackageReference Include="Microsoft.Build.Tasks.Core" Version="18.8.2" />
+    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="18.8.2" />
   </ItemGroup>
 
   <Import Condition="'$(NuGetBuild)' != 'true'" Project="../../Utilities/Lombiq.MSBuild.Targets/Lombiq.MSBuild.Base.Sdk/Sdk/Import.targets" />
